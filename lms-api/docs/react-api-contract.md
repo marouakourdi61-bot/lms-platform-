@@ -3,7 +3,7 @@
 | Contract metadata | Value |
 | --- | --- |
 | Consumer | LMS React frontend |
-| Document revision | 0.4 draft - 29 October 2026 |
+| Document revision | 0.5 draft - 11 November 2026 |
 | Backend baseline | Integrated commit `de43520`; API sources also checked against team main `384eb76` |
 | Tracking | FAL-161; scope FAL-188, examples FAL-189, handoff FAL-190 |
 | Approval | Pending backend/frontend agreement |
@@ -24,7 +24,8 @@ replayable API collection. None of these replaces checking the running service.
 [endpoint cards](#4-endpoint-cards),
 [demo setup](#5-demo-setup-and-replay),
 [open decisions](#6-gaps-and-decisions-to-confirm),
-[delivery checklist](#8-delivery-checklist-and-evidence).
+[delivery checklist](#8-delivery-checklist-and-evidence),
+[Sprint 3 compatibility](#9-sprint-3-frontend-compatibility).
 
 Reviewers: see the [FAL-190 handoff and consistency review](react-api-contract-handoff.md)
 for the checked revisions, discrepancies, test results and remaining delivery steps.
@@ -738,3 +739,175 @@ pagination format and `{ code, message }` error example are illustrative and
 have not been adopted as LMS behavior.
 
 No application behavior or automated test files are changed by this document.
+
+## 9. Sprint 3 Frontend Compatibility
+
+This section compares the current mounted backend with the Sprint 3 needs
+provided for S3-3 / LF-11: login, user consultation/management, course
+catalogue and enrollment management. The Jira issue text and acceptance
+criteria were not available in this repository; compatibility findings below
+are limited to those four stated needs. Routes and rules were checked against
+`app.js`, `routes/`, controllers, authentication/authorization middleware,
+validators, relevant models and generated Swagger/OpenAPI source on
+11 November 2026. Examples use placeholders and do not claim a live replay.
+
+### 9.1 Mounted backend endpoint inventory
+
+The following inventory includes application routes mounted by `app.js`,
+including the health and diagnostic routes. `:name` denotes an Express path
+parameter; Swagger uses the equivalent `{name}` notation. Swagger UI itself is
+at `/api-docs/`. For field-level schemas, examples and endpoint-specific
+responses, use the operation in Swagger and the cards above; the route list is
+not a promise that every role has access to every record.
+
+| Method and mounted path | Access enforced by current code |
+| --- | --- |
+| `GET /` | Public health response. |
+| `GET /api/modules/test` | Public diagnostic response. |
+| `POST /api/auth/register` | Public; always creates a `learner`. |
+| `POST /api/auth/login` | Public. |
+| `GET /api/auth/me` | Any valid Bearer token. |
+| `GET /api/courses` | Public published-course catalogue. |
+| `GET /api/courses/:id` | Public published-course detail. |
+| `POST /api/courses` | `trainer` only. |
+| `PUT /api/courses/:id` | Owning `trainer` only; admin is not allowed. |
+| `DELETE /api/courses/:id` | Owning `trainer` only; admin is not allowed. |
+| `PATCH /api/courses/:id/:status` | Owning `trainer` only; `status` is `draft` or `published`. |
+| `GET /api/trainer/courses` | `trainer` only; lists the caller's courses. |
+| `GET /api/courses/:id/modules` | Bearer token plus active enrollment; no explicit role check. |
+| `POST /api/courses/:courseId/modules` | `trainer` only; course ownership is not checked. |
+| `PUT /api/courses/modules/:moduleId` | `trainer` only; course ownership is not checked. |
+| `DELETE /api/courses/modules/:moduleId` | `trainer` only; course ownership is not checked. |
+| `PATCH /api/courses/modules/:moduleId/status/:status` | Owning `trainer`; route also requires a full module body. |
+| `GET /api/courses/:courseId/resume` | Bearer token with active/completed enrollment; no explicit role check. |
+| `POST /api/courses/:courseId/enroll` | Any valid Bearer token; course must be published. |
+| `GET /api/enrollments/me` | Any valid Bearer token; returns records for the token identity. |
+| `GET /api/courses/:courseId/progress` | Bearer token with active/completed enrollment; no explicit role check. |
+| `POST /api/modules/:moduleId/complete` | Bearer token plus learning prerequisites; no explicit role check. |
+| `GET /api/modules/:id/resources` | Public. |
+| `POST /api/modules/:id/resources` | `trainer` only; course ownership is not checked. |
+| `POST /api/modules/:id/resources/upload` | Owning `trainer`; multipart file upload. |
+| `PUT /api/modules/:id/resources/:resourceId` | `trainer` only; course ownership is not checked. |
+| `DELETE /api/modules/:id/resources/:resourceId` | `trainer` only; course ownership is not checked. |
+| `POST /api/modules/:resourceId/consult` | Bearer token plus active enrollment; no explicit role check. The parameter is a resource ID. |
+| `GET /api/trainer/courses/:courseId/learners` | Owning `trainer`; active/completed enrollments for this course. |
+| `GET /api/trainer/courses/:courseId/learners/:learnerId/progress` | Owning `trainer`; learner must have active/completed enrollment. |
+| `GET /api/trainer/stats` | `trainer` only; admins and learners are refused. |
+| `GET /api/trainer/summary-preferences` | `trainer` only. |
+| `PATCH /api/trainer/summary-preferences` | `trainer` only. |
+| `POST /api/quizzes` | Owning `trainer` only. |
+| `GET /api/quizzes/:quizId` | `learner` only, with enrollment/publication/unlock prerequisites. |
+| `PATCH /api/quizzes/:quizId` | Owning `trainer` only. |
+| `POST /api/quizzes/:quizId/attempts` | `learner` only; current route does not enforce the quiz-read prerequisites. |
+| `GET /api/quizzes/:quizId/attempts` | `learner` (own attempts) or owning `trainer`; admin is refused. |
+| `POST /api/feedback` | Owning `trainer`; learner enrollment and course/module relationship required. |
+| `GET /api/feedback/:feedbackId` | Recipient `learner`, current course-owner `trainer`, or `admin`. |
+| `PATCH /api/feedback/:feedbackId` | Current course-owner `trainer` or `admin`. |
+| `POST /api/config/notifications` | `admin` only. |
+| `GET /api/config/notifications` | `admin` only. |
+| `PATCH /api/config/notifications` | `admin` only. |
+| `DELETE /api/config/notifications` | `admin` only; success is HTTP 204 with an empty body. |
+| `GET /api/config/job-executions` | `admin` only. |
+| `POST /api/jobs/inactive-reminders/run`, `/api/admin/jobs/inactive-reminders/run` | `admin` only. |
+| `POST /api/jobs/trainer-summary/run`, `/api/admin/jobs/trainer-summary/run` | `admin` only. |
+| `POST /api/jobs/stats/run`, `/api/admin/jobs/stats/run` | `admin` only. |
+| `POST /api/jobs/:jobName/run`, `POST /api/admin/jobs/:jobName/run` | `admin` only; supported job names are `inactiveLearnerReminder`, `trainerSummary`, `statsRefresh`. |
+
+The `/api/jobs` and `/api/admin/jobs` mounts expose equivalent manual-job
+handlers under both prefixes. Static aliases use URL slugs; the generic route
+uses the job names shown above. Admin notification/job routes are included in
+the inventory but are not part of the stated Sprint 3 frontend scope.
+
+### 9.2 Authentication and account endpoints
+
+| Operation | Request | Success response | Current errors |
+| --- | --- | --- | --- |
+| `POST /api/auth/register` | Public; `Content-Type: application/json`; strict JSON body shown below. No `role`, `status` or extra keys. | HTTP 201: `{ "status": 201, "message": "Account created successfully", "data": { "id": "<userId>", "name": "<name>", "email": "<email>", "role": "learner", "status": "active" } }` | 400 invalid body, 409 email already registered, 500 unexpected error. |
+| `POST /api/auth/login` | Public; `Content-Type: application/json`; strict body with `email` and `password`. | HTTP 200: `{ "status": 200, "message": "login successful", "data": { "token": "<jwt>", "user": { "id": "<userId>", "email": "<email>", "role": "<role>", "status": "active" } } }` | 400 invalid body, 401 invalid credentials, 403 suspended account, 500 unexpected error. |
+| `GET /api/auth/me` | `Authorization: Bearer <token>`; no body or query. | HTTP 200: `{ "status": 200, "message": "profile retrieved success", "data": { "id": "<userId>", "name": "<name>", "email": "<email>", "role": "<role>", "status": "<status>" } }` | 401 missing/invalid/expired token, 404 user no longer exists, 500 unexpected error. |
+
+Registration body example and validation:
+
+```json
+{
+  "name": "Alex Martin",
+  "email": "alex@example.com",
+  "password": "Password123!"
+}
+```
+
+`name` is trimmed and at least 2 characters; `email` is trimmed, lowercased
+and validated as an email; `password` is at least 8 characters. The request
+schema is strict. The password is hashed and is never returned. The User model
+has `name`, `email`, `password`, `role` (`learner | trainer | admin`) and
+`status` (`active | suspended`), with timestamps; the user API responses above
+do not expose the password or timestamps.
+
+Login validates and normalizes email, signs a JWT with `sub` set to the user ID
+and `role` set to the current role, and uses `JWT_SECRET` plus
+`JWT_EXPIRES_IN`. Send the returned token as `Authorization: Bearer <token>` on
+protected requests. The authentication middleware verifies the token and
+copies its subject/role into the request; it does not reload the account on
+each request. No refresh, logout, password-reset, user-list, user-detail,
+user-update, user-delete, role-change or account-status-change endpoint is
+mounted. The frontend storage and renewal policy is not established by this
+API; token expiry must not be hard-coded by the client.
+
+### 9.3 Sprint 3 feature compatibility
+
+| Stated frontend need | Available API and actual contract | Compatibility |
+| --- | --- | --- |
+| Login | `POST /api/auth/login`, public JSON `{ email, password }`; HTTP 200 returns JWT at `data.token` and `{ id, email, role, status }` at `data.user`. `GET /api/auth/me` returns the profile, including `name`, in `data`. | Available. There is no refresh/logout route; the API does not define browser token storage or renewal behavior. |
+| User consultation | `GET /api/auth/me` reads only the caller's profile. `GET /api/trainer/courses/:courseId/learners` returns learners enrolled in a course owned by that trainer; this is a trainer-scoped enrollment list, not a general user directory. | Partially available only if the story means “my profile” or “learners in my owned course.” There is no `GET /api/users`, `GET /api/users/:id`, or equivalent admin directory endpoint. |
+| User management | `POST /api/auth/register` creates a learner only. Existing role/status fields are in the model, but no mounted endpoint administers accounts, changes roles/statuses, edits or deletes users. | Not available for user administration, trainer/admin creation, or role/status management. Do not infer routes from the User model. |
+| Course catalogue | `GET /api/courses` is public and lists published courses; optional query parameters: `category`, `level`, `keyword`, `sortBy`. HTTP 200 is `{ count, data: Course[] }`; no server pagination. `GET /api/courses/:id` returns `{ data: Course }` for a published course. | Available for browsing published courses. Draft/admin catalogue access is not exposed by these public read routes. |
+| Course management (if required by the story) | `GET /api/trainer/courses?status=draft|published|archived`, `POST /api/courses`, `PUT /api/courses/:id`, `DELETE /api/courses/:id`, `PATCH /api/courses/:id/:status`. These are trainer operations; mutations require course ownership. | Available for trainers, but the supplied Jira summary does not say whether course authoring belongs to Sprint 3. Admin is not a bypass for trainer course mutations. |
+| Enrollment management | `POST /api/courses/:courseId/enroll` has no body and returns HTTP 201 `{ message, enrollment }`. `GET /api/enrollments/me` returns HTTP 200 as a plain array of enrollment documents with populated `course`. | Create/list-self are available. No cancellation, deletion, update, list-all, or list-by-user enrollment endpoint is mounted. |
+
+`GET /api/trainer/courses/:courseId/learners` can support a trainer's view of
+course participants, but it does not provide arbitrary user lookup or
+administration. Its response is `{ message, data: Enrollment[] }`; the
+enrollment records include populated learner name/email and are restricted to
+active/completed course enrollments. This is the only mounted route found that
+lists user identities, and it is scoped to the owning trainer and course.
+
+The exact catalogue query/body behavior remains as described in cards 4.2–4.3.
+Enrollment creation/list behavior and response shapes remain as described in
+card 4.4. The route and controller checks additionally establish that an
+enrollment POST is currently allowed for any authenticated role, not just
+`learner`; a cancelled prior enrollment may still conflict with the unique
+learner/course index even though the explicit duplicate check searches active
+enrollments.
+
+### 9.4 Missing endpoints and Jira compatibility gaps
+
+| Gap | Backend evidence | Frontend impact |
+| --- | --- | --- |
+| General user consultation | `app.js` mounts no user router; `routes/` contains no user directory/detail route. | A story requiring a user table, search/filter, pagination or arbitrary user detail has no API contract to integrate against. |
+| User administration | No user update/delete/status/role-management route or controller is mounted. Registration hardcodes role `learner`. | Account administration and creating trainer/admin users require a backend feature or a separately agreed provisioning process. Do not call guessed `/api/users` routes. |
+| Enrollment lifecycle management | Only create enrollment and list the token holder's enrollments are mounted. No cancel/un-enroll/update/list-all operation exists. | Stories requiring cancellation, reactivation or trainer/admin enrollment management are blocked by missing endpoints. |
+| Learner-only enrollment policy | `POST /api/courses/:courseId/enroll` uses `authenticate` but no `authorize(learner)`. The model field is named `learner`, but that does not restrict caller role. | Confirm expected behavior; frontend must not present this as learner-only enforcement. |
+| Browser cross-origin access | `app.js` does not configure CORS. | A React app on a different origin needs an agreed dev proxy/same-origin arrangement or a separately scoped backend CORS change. No browser connectivity is implied by Swagger or local HTTP examples. |
+| Jira acceptance criteria | Only the ticket title and four feature areas were supplied in the task; the story text, actors, fields and acceptance criteria were not present in the repository search. | Confirm story-level requirements before treating partial support as acceptance. |
+
+### 9.5 Decisions to confirm with backend/product
+
+1. Does “consultation et gestion des utilisateurs” mean own profile, trainer
+  course participants, or an admin user directory? Which roles may list/read
+  users, and which user fields may be returned?
+2. Are create/update/delete, suspend/activate and role assignment required in
+  Sprint 3? If so, define endpoints, allowed fields, role policy and audit
+  expectations; none is currently mounted.
+3. Should enrollment creation be restricted to learners? Should trainers or
+  admins be able to view/manage another user's enrollments? Is cancellation
+  or re-enrollment required, given the unique learner/course index?
+4. Is the public catalogue limited to published courses, and is trainer course
+  CRUD in this Sprint's Jira acceptance scope?
+5. What React origin/proxy should be used in development, given that the API
+  currently has no CORS middleware?
+6. Confirm the full S3-3/LF-11 user stories and acceptance criteria. The current
+  contract only compares against the four needs listed in the request.
+
+Until these decisions are confirmed, integrate only the operations and
+permissions explicitly listed above. Do not model a global user-management or
+enrollment-cancellation workflow from the database schema alone.
