@@ -1,0 +1,39 @@
+{
+  "name": "lms-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js",
+    "seed": "node seed/seed.js",
+    "jobs:inactive-reminders": "node scripts/runInactiveReminders.js",
+    "jobs:trainer-summary": "node scripts/runTrainerSummary.js",
+    "jobs:stats": "node scripts/runStats.js",
+    "test": "jest --runInBand --setupFilesAfterEnv=./tests/setup.js",
+    "test:quiz": "jest tests/quizScoring.test.js --runInBand --setupFilesAfterEnv=./tests/setup.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "cron-validator": "^1.4.0",
+    "dotenv": "^18.0.4",
+    "express": "^5.2.1",
+    "jsonwebtoken": "^9.0.3",
+    "mongoose": "^8.24.5",
+    "multer": "^2.4.0",
+    "node-cron": "^4.6.0",
+    "nodemailer": "^10.2.1",
+    "swagger-jsdoc": "^6.3.0",
+    "swagger-ui-express": "^5.0.1",
+    "zod": "^4.6.5"
+  },
+  "devDependencies": {
+    "jest": "^30.5.2",
+    "nodemon": "^1.14.10",
+    "supertest": "^7.3.1"
+  }
+}

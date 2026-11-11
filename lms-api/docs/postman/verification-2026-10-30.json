@@ -1,0 +1,513 @@
+{
+  "date": "2026-10-30",
+  "timezone": "Africa/Casablanca",
+  "sourceCommit": "527ca48",
+  "runner": "Newman (Postman collection)",
+  "baseUrl": "http://127.0.0.1:3001",
+  "database": "isolated lms_postman_20261030 on port 27019",
+  "requests": 90,
+  "assertions": 209,
+  "failures": 0,
+  "skips": 0,
+  "emailLogEvents": [
+    "user_registered",
+    "course_enrolled",
+    "trainer_summary",
+    "inactive_learner_reminder"
+  ],
+  "limitations": [
+    "Required forgotten-password email journey has no mounted endpoint; quiz-completion email is not one of the five source requirements",
+    "SMTP and cron timing not verified",
+    "Second-developer and browser replay pending"
+  ],
+  "groups": [
+    {
+      "name": "Public smoke",
+      "requests": 4,
+      "assertions": 11,
+      "failures": [],
+      "executions": [
+        {
+          "name": "01 — API connection",
+          "status": 200
+        },
+        {
+          "name": "02 — Published course catalogue",
+          "status": 200
+        },
+        {
+          "name": "03 — Missing authentication returns 401",
+          "status": 401
+        },
+        {
+          "name": "04 — Invalid authentication returns 401",
+          "status": 401
+        }
+      ]
+    },
+    {
+      "name": "Three role logins",
+      "requests": 3,
+      "assertions": 9,
+      "failures": [],
+      "executions": [
+        {
+          "name": "Login as learner",
+          "status": 200
+        },
+        {
+          "name": "Login as trainer",
+          "status": 200
+        },
+        {
+          "name": "Login as admin",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "name": "Distinct otherLearner",
+      "requests": 1,
+      "assertions": 0,
+      "failures": [],
+      "executions": [
+        {
+          "name": "Login otherLearner",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "name": "Distinct otherTrainer",
+      "requests": 1,
+      "assertions": 0,
+      "failures": [],
+      "executions": [
+        {
+          "name": "Login otherTrainer",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "name": "Disposable fixture journey",
+      "requests": 6,
+      "assertions": 17,
+      "failures": [],
+      "executions": [
+        {
+          "name": "01 — Create disposable course",
+          "status": 201
+        },
+        {
+          "name": "02 — Create published module",
+          "status": 201
+        },
+        {
+          "name": "03 — Create link resource",
+          "status": 201
+        },
+        {
+          "name": "04 — Create optional one-question quiz",
+          "status": 201
+        },
+        {
+          "name": "05 — Publish disposable course",
+          "status": 200
+        },
+        {
+          "name": "06 — Enroll learner and select fixture",
+          "status": 201
+        }
+      ]
+    },
+    {
+      "name": "Create feedback",
+      "requests": 1,
+      "assertions": 3,
+      "failures": [],
+      "executions": [
+        {
+          "name": "POST /api/feedback — 201",
+          "status": 201
+        }
+      ]
+    },
+    {
+      "name": "Frontend reading journeys",
+      "requests": 10,
+      "assertions": 23,
+      "failures": [],
+      "executions": [
+        {
+          "name": "01 — Learner profile",
+          "status": 200
+        },
+        {
+          "name": "02 — My enrollments",
+          "status": 200
+        },
+        {
+          "name": "03 — Course details",
+          "status": 200
+        },
+        {
+          "name": "04 — Enrolled course modules",
+          "status": 200
+        },
+        {
+          "name": "05 — Module resources",
+          "status": 200
+        },
+        {
+          "name": "06 — Quiz without answer key",
+          "status": 200
+        },
+        {
+          "name": "07 — My quiz attempts",
+          "status": 200
+        },
+        {
+          "name": "08 — My feedback",
+          "status": 200
+        },
+        {
+          "name": "09 — Trainer owned courses",
+          "status": 200
+        },
+        {
+          "name": "10 — Trainer statistics",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "name": "Access and validation",
+      "requests": 14,
+      "assertions": 42,
+      "failures": [],
+      "executions": [
+        {
+          "name": "01 — Profile without token → 401",
+          "status": 401
+        },
+        {
+          "name": "02 — Profile with invalid token → 401",
+          "status": 401
+        },
+        {
+          "name": "03 — Learner cannot read trainer stats → 403",
+          "status": 403
+        },
+        {
+          "name": "04 — Learner cannot read admin config → 403",
+          "status": 403
+        },
+        {
+          "name": "05 — Trainer cannot read learner quiz → 403",
+          "status": 403
+        },
+        {
+          "name": "06 — Admin cannot read quiz attempts → 403",
+          "status": 403
+        },
+        {
+          "name": "07 — Other learner cannot read feedback → 403",
+          "status": 403
+        },
+        {
+          "name": "08 — Other trainer cannot read feedback → 403",
+          "status": 403
+        },
+        {
+          "name": "09 — Wrong course module → 400",
+          "status": 400
+        },
+        {
+          "name": "10 — Learner cannot create course → 403",
+          "status": 403
+        },
+        {
+          "name": "11 — Unenrolled learner cannot read quiz → 403",
+          "status": 403
+        },
+        {
+          "name": "12 — Duplicate active enrollment → 409",
+          "status": 409
+        },
+        {
+          "name": "13 — Invalid trainer course body → 400",
+          "status": 400
+        },
+        {
+          "name": "16 — Missing upload file → 400",
+          "status": 400
+        }
+      ]
+    },
+    {
+      "name": "Progress and quiz completion",
+      "requests": 7,
+      "assertions": 14,
+      "failures": [],
+      "executions": [
+        {
+          "name": "POST /api/modules/{resourceId}/consult — 200 or 201",
+          "status": 201
+        },
+        {
+          "name": "POST /api/quizzes/{quizId}/attempts — 201",
+          "status": 201
+        },
+        {
+          "name": "POST /api/modules/{moduleId}/complete — 200",
+          "status": 200
+        },
+        {
+          "name": "GET /api/courses/{courseId}/progress — 200",
+          "status": 200
+        },
+        {
+          "name": "GET /api/courses/{courseId}/resume — 200",
+          "status": 200
+        },
+        {
+          "name": "PATCH /api/feedback/{feedbackId} — 200",
+          "status": 200
+        },
+        {
+          "name": "GET /api/quizzes/{quizId}/attempts — 200",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "name": "Configuration lifecycle and jobs",
+      "requests": 17,
+      "assertions": 33,
+      "failures": [],
+      "executions": [
+        {
+          "name": "DELETE /api/config/notifications — 204",
+          "status": 204
+        },
+        {
+          "name": "POST /api/config/notifications — 201",
+          "status": 201
+        },
+        {
+          "name": "GET /api/config/notifications — 200",
+          "status": 200
+        },
+        {
+          "name": "PATCH /api/config/notifications — 200",
+          "status": 200
+        },
+        {
+          "name": "POST /api/jobs/inactive-reminders/run — 200",
+          "status": 200
+        },
+        {
+          "name": "POST /api/jobs/trainer-summary/run — 200",
+          "status": 200
+        },
+        {
+          "name": "POST /api/jobs/stats/run — 200",
+          "status": 200
+        },
+        {
+          "name": "POST /api/jobs/{jobName}/run — 200",
+          "status": 200
+        },
+        {
+          "name": "POST /api/admin/jobs/inactive-reminders/run — 200",
+          "status": 200
+        },
+        {
+          "name": "POST /api/admin/jobs/trainer-summary/run — 200",
+          "status": 200
+        },
+        {
+          "name": "POST /api/admin/jobs/stats/run — 200",
+          "status": 200
+        },
+        {
+          "name": "POST /api/admin/jobs/{jobName}/run — 200",
+          "status": 200
+        },
+        {
+          "name": "GET /api/config/job-executions — 200",
+          "status": 200
+        },
+        {
+          "name": "GET /api/trainer/stats — 200",
+          "status": 200
+        },
+        {
+          "name": "GET /api/trainer/summary-preferences — 200",
+          "status": 200
+        },
+        {
+          "name": "PATCH /api/trainer/summary-preferences — 200",
+          "status": 200
+        },
+        {
+          "name": "DELETE /api/config/notifications — 204",
+          "status": 204
+        }
+      ]
+    },
+    {
+      "name": "Upload success and limits",
+      "requests": 3,
+      "assertions": 9,
+      "failures": [],
+      "executions": [
+        {
+          "name": "POST /api/modules/{id}/resources/upload — 201",
+          "status": 201
+        },
+        {
+          "name": "14 — Unsupported upload type → 400",
+          "status": 400
+        },
+        {
+          "name": "15 — Upload exceeds 5 MiB → 413",
+          "status": 413
+        }
+      ]
+    },
+    {
+      "name": "Remaining reads and updates",
+      "requests": 11,
+      "assertions": 23,
+      "failures": [],
+      "executions": [
+        {
+          "name": "POST /api/auth/register — 201",
+          "status": 201
+        },
+        {
+          "name": "POST /api/auth/login — 200",
+          "status": 200
+        },
+        {
+          "name": "GET /api/auth/me — 200",
+          "status": 200
+        },
+        {
+          "name": "GET /api/modules/test — 200",
+          "status": 200
+        },
+        {
+          "name": "GET /api/trainer/courses/{courseId}/learners — 200",
+          "status": 200
+        },
+        {
+          "name": "GET /api/trainer/courses/{courseId}/learners/{learnerId}/progress — 200",
+          "status": 200
+        },
+        {
+          "name": "PATCH /api/quizzes/{quizId} — 200",
+          "status": 200
+        },
+        {
+          "name": "PUT /api/modules/{id}/resources/{resourceId} — 200",
+          "status": 200
+        },
+        {
+          "name": "PUT /api/courses/{id} — 200",
+          "status": 200
+        },
+        {
+          "name": "PUT /api/courses/modules/{moduleId} — 200",
+          "status": 200
+        },
+        {
+          "name": "PATCH /api/courses/modules/{moduleId}/status/{status} — 200",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "name": "Deletion guards on used fixture",
+      "requests": 2,
+      "assertions": 2,
+      "failures": [],
+      "executions": [
+        {
+          "name": "DELETE /api/modules/{id}/resources/{resourceId} — 200 (used fixture refuses 409)",
+          "status": 409
+        },
+        {
+          "name": "DELETE /api/courses/{id} — 200 (used fixture refuses 409)",
+          "status": 409
+        }
+      ]
+    },
+    {
+      "name": "Inactive reminder email log",
+      "requests": 4,
+      "assertions": 8,
+      "failures": [],
+      "executions": [
+        {
+          "name": "GET /api/config/notifications — 200",
+          "status": 200
+        },
+        {
+          "name": "POST /api/courses/{courseId}/enroll — 201",
+          "status": 201
+        },
+        {
+          "name": "PATCH /api/config/notifications — 200",
+          "status": 200
+        },
+        {
+          "name": "POST /api/jobs/inactive-reminders/run — 200",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "name": "Fresh unused deletion fixture",
+      "requests": 3,
+      "assertions": 9,
+      "failures": [],
+      "executions": [
+        {
+          "name": "01 — Create disposable course",
+          "status": 201
+        },
+        {
+          "name": "02 — Create published module",
+          "status": 201
+        },
+        {
+          "name": "03 — Create link resource",
+          "status": 201
+        }
+      ]
+    },
+    {
+      "name": "Final resource module and course cleanup",
+      "requests": 3,
+      "assertions": 6,
+      "failures": [],
+      "executions": [
+        {
+          "name": "DELETE /api/modules/{id}/resources/{resourceId} — 200",
+          "status": 200
+        },
+        {
+          "name": "DELETE /api/courses/modules/{moduleId} — 200",
+          "status": 200
+        },
+        {
+          "name": "DELETE /api/courses/{id} — 200",
+          "status": 200
+        }
+      ]
+    }
+  ]
+}
