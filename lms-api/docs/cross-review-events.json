@@ -1,0 +1,592 @@
+{
+  "collectedAt": "2026-10-30T07:51:48.2636788+00:00",
+  "repository": "marouakourdi61-bot/fondations_API_LMS",
+  "scope": "Merged Brief 3 PRs #37 through #61.",
+  "scopeConfirmation": {
+    "source": "User reported squad confirmation in chat; not a GitHub review event",
+    "date": "2026-10-30"
+  },
+  "limitations": [
+    "REST inline comments do not expose review-thread resolved status; resolution needs timeline/thread inspection.",
+    "No submitted review is not proof that no informal review occurred.",
+    "A recorded cross-review is not necessarily approval of the final revision.",
+    "No reviews, comments, approvals or merges were submitted by this script."
+  ],
+  "pullRequests": [
+    {
+      "number": 37,
+      "title": "Feature/b3 unify json errors validations",
+      "url": "https://github.com/marouakourdi61-bot/fondations_API_LMS/pull/37",
+      "author": "Mehdi-133",
+      "mergedAt": "2026-10-22T14:23:03Z",
+      "mergeCommit": "dedbc89ca3eac0c1a057e67bbaaeab1f9f0c82c3",
+      "mergeCommitUrl": "https://github.com/marouakourdi61-bot/fondations_API_LMS/commit/dedbc89ca3eac0c1a057e67bbaaeab1f9f0c82c3",
+      "verdict": "no submitted pre-merge cross-review found",
+      "retrievalErrors": [],
+      "reviews": [],
+      "inlineComments": [],
+      "discussionComments": [],
+      "mergeEvents": [
+        {
+          "id": 33959310663,
+          "actor": "marouakourdi61-bot",
+          "createdAt": "2026-10-22T14:23:03Z",
+          "apiUrl": "https://api.github.com/repos/marouakourdi61-bot/fondations_API_LMS/issues/events/33959310663",
+          "commit": "dedbc89ca3eac0c1a057e67bbaaeab1f9f0c82c3"
+        }
+      ]
+    },
+    {
+      "number": 38,
+      "title": "Feature/server score",
+      "url": "https://github.com/marouakourdi61-bot/fondations_API_LMS/pull/38",
+      "author": "chahd-05",
+      "mergedAt": "2026-10-23T14:32:43Z",
+      "mergeCommit": "be3f87182030205f4acb708f124fc2fb58eec287",
+      "mergeCommitUrl": "https://github.com/marouakourdi61-bot/fondations_API_LMS/commit/be3f87182030205f4acb708f124fc2fb58eec287",
+      "verdict": "no submitted pre-merge cross-review found",
+      "retrievalErrors": [],
+      "reviews": [],
+      "inlineComments": [],
+      "discussionComments": [],
+      "mergeEvents": [
+        {
+          "id": 34060800293,
+          "actor": "marouakourdi61-bot",
+          "createdAt": "2026-10-23T14:32:43Z",
+          "apiUrl": "https://api.github.com/repos/marouakourdi61-bot/fondations_API_LMS/issues/events/34060800293",
+          "commit": "be3f87182030205f4acb708f124fc2fb58eec287"
+        }
+      ]
+    },
+    {
+      "number": 39,
+      "title": "Fal 40 en tant que formateur je cree un quiz par module questions choix seuil",
+      "url": "https://github.com/marouakourdi61-bot/fondations_API_LMS/pull/39",
+      "author": "Mehdi-133",
+      "mergedAt": "2026-10-23T14:33:23Z",
+      "mergeCommit": "3e54d5cf9858099d60c1ee3d3d1f10cdc5cbe9b3",
+      "mergeCommitUrl": "https://github.com/marouakourdi61-bot/fondations_API_LMS/commit/3e54d5cf9858099d60c1ee3d3d1f10cdc5cbe9b3",
+      "verdict": "no submitted pre-merge cross-review found",
+      "retrievalErrors": [],
+      "reviews": [],
+      "inlineComments": [],
+      "discussionComments": [],
+      "mergeEvents": [
+        {
+          "id": 34060861161,
+          "actor": "marouakourdi61-bot",
+          "createdAt": "2026-10-23T14:33:23Z",
+          "apiUrl": "https://api.github.com/repos/marouakourdi61-bot/fondations_API_LMS/issues/events/34060861161",
+          "commit": "3e54d5cf9858099d60c1ee3d3d1f10cdc5cbe9b3"
+        }
+      ]
+    },
+    {
+      "number": 40,
+      "title": "Feature/fal 155 notification config",
+      "url": "https://github.com/marouakourdi61-bot/fondations_API_LMS/pull/40",
+      "author": "marouakourdi61-bot",
+      "mergedAt": "2026-10-23T15:13:10Z",
+      "mergeCommit": "6fc68ab4ec2f436400b1e8035c6b0bb39b3ae2d5",
+      "mergeCommitUrl": "https://github.com/marouakourdi61-bot/fondations_API_LMS/commit/6fc68ab4ec2f436400b1e8035c6b0bb39b3ae2d5",
+      "verdict": "no submitted pre-merge cross-review found",
+      "retrievalErrors": [],
+      "reviews": [],
+      "inlineComments": [],
+      "discussionComments": [],
+      "mergeEvents": [
+        {
+          "id": 34064436519,
+          "actor": "marouakourdi61-bot",
+          "createdAt": "2026-10-23T15:13:10Z",
+          "apiUrl": "https://api.github.com/repos/marouakourdi61-bot/fondations_API_LMS/issues/events/34064436519",
+          "commit": "6fc68ab4ec2f436400b1e8035c6b0bb39b3ae2d5"
+        }
+      ]
+    },
+    {
+      "number": 41,
+      "title": "feat: FAL-180  Protéger la lecture apprenant et filtrer les bonnes ré…",
+      "url": "https://github.com/marouakourdi61-bot/fondations_API_LMS/pull/41",
+      "author": "Mehdi-133",
+      "mergedAt": "2026-10-23T16:54:51Z",
+      "mergeCommit": "94ddfa939170706766925f102a6950ba8f5a8e5f",
+      "mergeCommitUrl": "https://github.com/marouakourdi61-bot/fondations_API_LMS/commit/94ddfa939170706766925f102a6950ba8f5a8e5f",
+      "verdict": "no submitted pre-merge cross-review found",
+      "retrievalErrors": [],
+      "reviews": [],
+      "inlineComments": [],
+      "discussionComments": [],
+      "mergeEvents": [
+        {
+          "id": 34073141587,
+          "actor": "marouakourdi61-bot",
+          "createdAt": "2026-10-23T16:54:51Z",
+          "apiUrl": "https://api.github.com/repos/marouakourdi61-bot/fondations_API_LMS/issues/events/34073141587",
+          "commit": "94ddfa939170706766925f102a6950ba8f5a8e5f"
+        }
+      ]
+    },
+    {
+      "number": 42,
+      "title": "Feature/fal 155 notification config",
+      "url": "https://github.com/marouakourdi61-bot/fondations_API_LMS/pull/42",
+      "author": "marouakourdi61-bot",
+      "mergedAt": "2026-10-24T23:25:34Z",
+      "mergeCommit": "93c4a7db458713f816ed9f45fe07911c570075b4",
+      "mergeCommitUrl": "https://github.com/marouakourdi61-bot/fondations_API_LMS/commit/93c4a7db458713f816ed9f45fe07911c570075b4",
+      "verdict": "no submitted pre-merge cross-review found",
+      "retrievalErrors": [],
+      "reviews": [],
+      "inlineComments": [],
+      "discussionComments": [],
+      "mergeEvents": [
+        {
+          "id": 34154986876,
+          "actor": "marouakourdi61-bot",
+          "createdAt": "2026-10-24T23:25:34Z",
+          "apiUrl": "https://api.github.com/repos/marouakourdi61-bot/fondations_API_LMS/issues/events/34154986876",
+          "commit": "93c4a7db458713f816ed9f45fe07911c570075b4"
+        }
+      ]
+    },
+    {
+      "number": 43,
+      "title": "feat(email): add configurable sandbox driver and HTML templates",
+      "url": "https://github.com/marouakourdi61-bot/fondations_API_LMS/pull/43",
+      "author": "marouakourdi61-bot",
+      "mergedAt": "2026-10-25T19:45:52Z",
+      "mergeCommit": "857c21af5649b77996daaef6cc492ce56af94ea5",
+      "mergeCommitUrl": "https://github.com/marouakourdi61-bot/fondations_API_LMS/commit/857c21af5649b77996daaef6cc492ce56af94ea5",
+      "verdict": "no submitted pre-merge cross-review found",
+      "retrievalErrors": [],
+      "reviews": [],
+      "inlineComments": [],
+      "discussionComments": [],
+      "mergeEvents": [
+        {
+          "id": 34200340374,
+          "actor": "marouakourdi61-bot",
+          "createdAt": "2026-10-25T19:45:52Z",
+          "apiUrl": "https://api.github.com/repos/marouakourdi61-bot/fondations_API_LMS/issues/events/34200340374",
+          "commit": "857c21af5649b77996daaef6cc492ce56af94ea5"
+        }
+      ]
+    },
+    {
+      "number": 44,
+      "title": "fix(email): align sandbox test with notification config",
+      "url": "https://github.com/marouakourdi61-bot/fondations_API_LMS/pull/44",
+      "author": "marouakourdi61-bot",
+      "mergedAt": "2026-10-25T20:40:56Z",
+      "mergeCommit": "0fa7c598720b3d6b245d5b14a2a84153f635f12a",
+      "mergeCommitUrl": "https://github.com/marouakourdi61-bot/fondations_API_LMS/commit/0fa7c598720b3d6b245d5b14a2a84153f635f12a",
+      "verdict": "no submitted pre-merge cross-review found",
+      "retrievalErrors": [],
+      "reviews": [],
+      "inlineComments": [],
+      "discussionComments": [],
+      "mergeEvents": [
+        {
+          "id": 34202776582,
+          "actor": "marouakourdi61-bot",
+          "createdAt": "2026-10-25T20:40:56Z",
+          "apiUrl": "https://api.github.com/repos/marouakourdi61-bot/fondations_API_LMS/issues/events/34202776582",
+          "commit": "0fa7c598720b3d6b245d5b14a2a84153f635f12a"
+        }
+      ]
+    },
+    {
+      "number": 45,
+      "title": "feat: add trainer summary preferences",
+      "url": "https://github.com/marouakourdi61-bot/fondations_API_LMS/pull/45",
+      "author": "marouakourdi61-bot",
+      "mergedAt": "2026-10-26T10:18:32Z",
+      "mergeCommit": "611d700e6a3639e277556ec85bbc0e3d71387663",
+      "mergeCommitUrl": "https://github.com/marouakourdi61-bot/fondations_API_LMS/commit/611d700e6a3639e277556ec85bbc0e3d71387663",
+      "verdict": "no submitted pre-merge cross-review found",
+      "retrievalErrors": [],
+      "reviews": [],
+      "inlineComments": [],
+      "discussionComments": [],
+      "mergeEvents": [
+        {
+          "id": 34247307216,
+          "actor": "marouakourdi61-bot",
+          "createdAt": "2026-10-26T10:18:32Z",
+          "apiUrl": "https://api.github.com/repos/marouakourdi61-bot/fondations_API_LMS/issues/events/34247307216",
+          "commit": "611d700e6a3639e277556ec85bbc0e3d71387663"
+        }
+      ]
+    },
+    {
+      "number": 46,
+      "title": "Feature/server tentative",
+      "url": "https://github.com/marouakourdi61-bot/fondations_API_LMS/pull/46",
+      "author": "chahd-05",
+      "mergedAt": "2026-10-26T21:51:32Z",
+      "mergeCommit": "39b335b7f7b5dcc10ed3cff0bbb306f7fc77559a",
+      "mergeCommitUrl": "https://github.com/marouakourdi61-bot/fondations_API_LMS/commit/39b335b7f7b5dcc10ed3cff0bbb306f7fc77559a",
+      "verdict": "no submitted pre-merge cross-review found",
+      "retrievalErrors": [],
+      "reviews": [],
+      "inlineComments": [],
+      "discussionComments": [],
+      "mergeEvents": [
+        {
+          "id": 34308616112,
+          "actor": "marouakourdi61-bot",
+          "createdAt": "2026-10-26T21:51:32Z",
+          "apiUrl": "https://api.github.com/repos/marouakourdi61-bot/fondations_API_LMS/issues/events/34308616112",
+          "commit": "39b335b7f7b5dcc10ed3cff0bbb306f7fc77559a"
+        }
+      ]
+    },
+    {
+      "number": 47,
+      "title": "Fal 153 trainer feedback access",
+      "url": "https://github.com/marouakourdi61-bot/fondations_API_LMS/pull/47",
+      "author": "Mehdi-133",
+      "mergedAt": "2026-10-27T10:30:03Z",
+      "mergeCommit": "542371b60b0f5650e2d69f603b37391998910bd5",
+      "mergeCommitUrl": "https://github.com/marouakourdi61-bot/fondations_API_LMS/commit/542371b60b0f5650e2d69f603b37391998910bd5",
+      "verdict": "no submitted pre-merge cross-review found",
+      "retrievalErrors": [],
+      "reviews": [],
+      "inlineComments": [],
+      "discussionComments": [],
+      "mergeEvents": [
+        {
+          "id": 34355039885,
+          "actor": "marouakourdi61-bot",
+          "createdAt": "2026-10-27T10:30:03Z",
+          "apiUrl": "https://api.github.com/repos/marouakourdi61-bot/fondations_API_LMS/issues/events/34355039885",
+          "commit": "542371b60b0f5650e2d69f603b37391998910bd5"
+        }
+      ]
+    },
+    {
+      "number": 48,
+      "title": "Feature/server tentative",
+      "url": "https://github.com/marouakourdi61-bot/fondations_API_LMS/pull/48",
+      "author": "chahd-05",
+      "mergedAt": "2026-10-27T11:51:44Z",
+      "mergeCommit": "0b30e3d498d7f2dcdf29318df019460a0cfc00f1",
+      "mergeCommitUrl": "https://github.com/marouakourdi61-bot/fondations_API_LMS/commit/0b30e3d498d7f2dcdf29318df019460a0cfc00f1",
+      "verdict": "no submitted pre-merge cross-review found",
+      "retrievalErrors": [],
+      "reviews": [],
+      "inlineComments": [],
+      "discussionComments": [],
+      "mergeEvents": [
+        {
+          "id": 34361810529,
+          "actor": "marouakourdi61-bot",
+          "createdAt": "2026-10-27T11:51:44Z",
+          "apiUrl": "https://api.github.com/repos/marouakourdi61-bot/fondations_API_LMS/issues/events/34361810529",
+          "commit": "0b30e3d498d7f2dcdf29318df019460a0cfc00f1"
+        }
+      ]
+    },
+    {
+      "number": 49,
+      "title": "Feature/fal 158 job triggers",
+      "url": "https://github.com/marouakourdi61-bot/fondations_API_LMS/pull/49",
+      "author": "marouakourdi61-bot",
+      "mergedAt": "2026-10-27T14:09:56Z",
+      "mergeCommit": "b290918172bf2f620acc42a522f29de4ad4164e1",
+      "mergeCommitUrl": "https://github.com/marouakourdi61-bot/fondations_API_LMS/commit/b290918172bf2f620acc42a522f29de4ad4164e1",
+      "verdict": "no submitted pre-merge cross-review found",
+      "retrievalErrors": [],
+      "reviews": [],
+      "inlineComments": [],
+      "discussionComments": [],
+      "mergeEvents": [
+        {
+          "id": 34374155016,
+          "actor": "marouakourdi61-bot",
+          "createdAt": "2026-10-27T14:09:56Z",
+          "apiUrl": "https://api.github.com/repos/marouakourdi61-bot/fondations_API_LMS/issues/events/34374155016",
+          "commit": "b290918172bf2f620acc42a522f29de4ad4164e1"
+        }
+      ]
+    },
+    {
+      "number": 50,
+      "title": "feat: FAL-181 Vérifier la confidentialité des tentatives après soumis…",
+      "url": "https://github.com/marouakourdi61-bot/fondations_API_LMS/pull/50",
+      "author": "Mehdi-133",
+      "mergedAt": "2026-10-27T14:22:40Z",
+      "mergeCommit": "8c4dca34240afc0be3059bc2a8f9ff558311f4d8",
+      "mergeCommitUrl": "https://github.com/marouakourdi61-bot/fondations_API_LMS/commit/8c4dca34240afc0be3059bc2a8f9ff558311f4d8",
+      "verdict": "no submitted pre-merge cross-review found",
+      "retrievalErrors": [],
+      "reviews": [],
+      "inlineComments": [],
+      "discussionComments": [],
+      "mergeEvents": [
+        {
+          "id": 34375459505,
+          "actor": "marouakourdi61-bot",
+          "createdAt": "2026-10-27T14:22:40Z",
+          "apiUrl": "https://api.github.com/repos/marouakourdi61-bot/fondations_API_LMS/issues/events/34375459505",
+          "commit": "8c4dca34240afc0be3059bc2a8f9ff558311f4d8"
+        }
+      ]
+    },
+    {
+      "number": 51,
+      "title": "refactor: remove duplicate tests functions",
+      "url": "https://github.com/marouakourdi61-bot/fondations_API_LMS/pull/51",
+      "author": "Mehdi-133",
+      "mergedAt": "2026-10-27T14:37:28Z",
+      "mergeCommit": "f189b1068b4cd63fe33016db4ccd466fb169b5b2",
+      "mergeCommitUrl": "https://github.com/marouakourdi61-bot/fondations_API_LMS/commit/f189b1068b4cd63fe33016db4ccd466fb169b5b2",
+      "verdict": "no submitted pre-merge cross-review found",
+      "retrievalErrors": [],
+      "reviews": [],
+      "inlineComments": [],
+      "discussionComments": [],
+      "mergeEvents": [
+        {
+          "id": 34376978763,
+          "actor": "marouakourdi61-bot",
+          "createdAt": "2026-10-27T14:37:28Z",
+          "apiUrl": "https://api.github.com/repos/marouakourdi61-bot/fondations_API_LMS/issues/events/34376978763",
+          "commit": "f189b1068b4cd63fe33016db4ccd466fb169b5b2"
+        }
+      ]
+    },
+    {
+      "number": 52,
+      "title": "Feature/seed data demonstration",
+      "url": "https://github.com/marouakourdi61-bot/fondations_API_LMS/pull/52",
+      "author": "chahd-05",
+      "mergedAt": "2026-10-27T16:48:09Z",
+      "mergeCommit": "3e609731d8989f91eb2ac36b80a5253d7a70031e",
+      "mergeCommitUrl": "https://github.com/marouakourdi61-bot/fondations_API_LMS/commit/3e609731d8989f91eb2ac36b80a5253d7a70031e",
+      "verdict": "no submitted pre-merge cross-review found",
+      "retrievalErrors": [],
+      "reviews": [],
+      "inlineComments": [],
+      "discussionComments": [],
+      "mergeEvents": [
+        {
+          "id": 34390341521,
+          "actor": "marouakourdi61-bot",
+          "createdAt": "2026-10-27T16:48:09Z",
+          "apiUrl": "https://api.github.com/repos/marouakourdi61-bot/fondations_API_LMS/issues/events/34390341521",
+          "commit": "3e609731d8989f91eb2ac36b80a5253d7a70031e"
+        }
+      ]
+    },
+    {
+      "number": 53,
+      "title": "chore(env): synchronize example configuration",
+      "url": "https://github.com/marouakourdi61-bot/fondations_API_LMS/pull/53",
+      "author": "marouakourdi61-bot",
+      "mergedAt": "2026-10-27T16:45:09Z",
+      "mergeCommit": "d95e3972222408cb52808b80a4191a823ef7763f",
+      "mergeCommitUrl": "https://github.com/marouakourdi61-bot/fondations_API_LMS/commit/d95e3972222408cb52808b80a4191a823ef7763f",
+      "verdict": "no submitted pre-merge cross-review found",
+      "retrievalErrors": [],
+      "reviews": [],
+      "inlineComments": [],
+      "discussionComments": [],
+      "mergeEvents": [
+        {
+          "id": 34390061428,
+          "actor": "marouakourdi61-bot",
+          "createdAt": "2026-10-27T16:45:09Z",
+          "apiUrl": "https://api.github.com/repos/marouakourdi61-bot/fondations_API_LMS/issues/events/34390061428",
+          "commit": "d95e3972222408cb52808b80a4191a823ef7763f"
+        }
+      ]
+    },
+    {
+      "number": 54,
+      "title": "Feature/fal 154 email notifications",
+      "url": "https://github.com/marouakourdi61-bot/fondations_API_LMS/pull/54",
+      "author": "marouakourdi61-bot",
+      "mergedAt": "2026-10-27T17:19:35Z",
+      "mergeCommit": "43476b9a52078b5e677fb11dc11f84930abe174e",
+      "mergeCommitUrl": "https://github.com/marouakourdi61-bot/fondations_API_LMS/commit/43476b9a52078b5e677fb11dc11f84930abe174e",
+      "verdict": "no submitted pre-merge cross-review found",
+      "retrievalErrors": [],
+      "reviews": [],
+      "inlineComments": [],
+      "discussionComments": [],
+      "mergeEvents": [
+        {
+          "id": 34393197422,
+          "actor": "marouakourdi61-bot",
+          "createdAt": "2026-10-27T17:19:35Z",
+          "apiUrl": "https://api.github.com/repos/marouakourdi61-bot/fondations_API_LMS/issues/events/34393197422",
+          "commit": "43476b9a52078b5e677fb11dc11f84930abe174e"
+        }
+      ]
+    },
+    {
+      "number": 55,
+      "title": "Feature/trainer stats",
+      "url": "https://github.com/marouakourdi61-bot/fondations_API_LMS/pull/55",
+      "author": "chahd-05",
+      "mergedAt": "2026-10-28T12:27:26Z",
+      "mergeCommit": "6df25d5896f47ccaedb89a73c0f46526d49c04b2",
+      "mergeCommitUrl": "https://github.com/marouakourdi61-bot/fondations_API_LMS/commit/6df25d5896f47ccaedb89a73c0f46526d49c04b2",
+      "verdict": "no submitted pre-merge cross-review found",
+      "retrievalErrors": [],
+      "reviews": [],
+      "inlineComments": [],
+      "discussionComments": [],
+      "mergeEvents": [
+        {
+          "id": 34472999648,
+          "actor": "marouakourdi61-bot",
+          "createdAt": "2026-10-28T12:27:26Z",
+          "apiUrl": "https://api.github.com/repos/marouakourdi61-bot/fondations_API_LMS/issues/events/34472999648",
+          "commit": "6df25d5896f47ccaedb89a73c0f46526d49c04b2"
+        }
+      ]
+    },
+    {
+      "number": 56,
+      "title": "Fal 160 b 3 openapi documenter les routes et schemas du brief 3",
+      "url": "https://github.com/marouakourdi61-bot/fondations_API_LMS/pull/56",
+      "author": "Mehdi-133",
+      "mergedAt": "2026-10-28T14:28:30Z",
+      "mergeCommit": "de43520311365ef1903968441db0455a171e3854",
+      "mergeCommitUrl": "https://github.com/marouakourdi61-bot/fondations_API_LMS/commit/de43520311365ef1903968441db0455a171e3854",
+      "verdict": "no submitted pre-merge cross-review found",
+      "retrievalErrors": [],
+      "reviews": [],
+      "inlineComments": [],
+      "discussionComments": [],
+      "mergeEvents": [
+        {
+          "id": 34484440810,
+          "actor": "marouakourdi61-bot",
+          "createdAt": "2026-10-28T14:28:30Z",
+          "apiUrl": "https://api.github.com/repos/marouakourdi61-bot/fondations_API_LMS/issues/events/34484440810",
+          "commit": "de43520311365ef1903968441db0455a171e3854"
+        }
+      ]
+    },
+    {
+      "number": 57,
+      "title": "fix(docker): pass demo seed password to API container",
+      "url": "https://github.com/marouakourdi61-bot/fondations_API_LMS/pull/57",
+      "author": "marouakourdi61-bot",
+      "mergedAt": "2026-10-28T15:17:10Z",
+      "mergeCommit": "384eb7674e551ddb656784a52b7e078c4c174281",
+      "mergeCommitUrl": "https://github.com/marouakourdi61-bot/fondations_API_LMS/commit/384eb7674e551ddb656784a52b7e078c4c174281",
+      "verdict": "no submitted pre-merge cross-review found",
+      "retrievalErrors": [],
+      "reviews": [],
+      "inlineComments": [],
+      "discussionComments": [],
+      "mergeEvents": [
+        {
+          "id": 34489467126,
+          "actor": "marouakourdi61-bot",
+          "createdAt": "2026-10-28T15:17:11Z",
+          "apiUrl": "https://api.github.com/repos/marouakourdi61-bot/fondations_API_LMS/issues/events/34489467126",
+          "commit": "384eb7674e551ddb656784a52b7e078c4c174281"
+        }
+      ]
+    },
+    {
+      "number": 58,
+      "title": "Fal 161 b 3 contrat livrer un contrat api stable avec exemples pour react",
+      "url": "https://github.com/marouakourdi61-bot/fondations_API_LMS/pull/58",
+      "author": "Mehdi-133",
+      "mergedAt": "2026-10-29T14:24:59Z",
+      "mergeCommit": "527ca48f3320222ae078223b96478934d589be75",
+      "mergeCommitUrl": "https://github.com/marouakourdi61-bot/fondations_API_LMS/commit/527ca48f3320222ae078223b96478934d589be75",
+      "verdict": "no submitted pre-merge cross-review found",
+      "retrievalErrors": [],
+      "reviews": [],
+      "inlineComments": [],
+      "discussionComments": [],
+      "mergeEvents": [
+        {
+          "id": 34595462584,
+          "actor": "marouakourdi61-bot",
+          "createdAt": "2026-10-29T14:24:59Z",
+          "apiUrl": "https://api.github.com/repos/marouakourdi61-bot/fondations_API_LMS/issues/events/34595462584",
+          "commit": "527ca48f3320222ae078223b96478934d589be75"
+        }
+      ]
+    },
+    {
+      "number": 59,
+      "title": "Feature/modification trainer summary preferences",
+      "url": "https://github.com/marouakourdi61-bot/fondations_API_LMS/pull/59",
+      "author": "marouakourdi61-bot",
+      "mergedAt": "2026-10-29T16:01:07Z",
+      "mergeCommit": "8bbfda29d3a59fd98ae428292461259e12cceebb",
+      "mergeCommitUrl": "https://github.com/marouakourdi61-bot/fondations_API_LMS/commit/8bbfda29d3a59fd98ae428292461259e12cceebb",
+      "verdict": "no submitted pre-merge cross-review found",
+      "retrievalErrors": [],
+      "reviews": [],
+      "inlineComments": [],
+      "discussionComments": [],
+      "mergeEvents": [
+        {
+          "id": 34605985444,
+          "actor": "marouakourdi61-bot",
+          "createdAt": "2026-10-29T16:01:07Z",
+          "apiUrl": "https://api.github.com/repos/marouakourdi61-bot/fondations_API_LMS/issues/events/34605985444",
+          "commit": "8bbfda29d3a59fd98ae428292461259e12cceebb"
+        }
+      ]
+    },
+    {
+      "number": 60,
+      "title": "Feature/server tentative",
+      "url": "https://github.com/marouakourdi61-bot/fondations_API_LMS/pull/60",
+      "author": "chahd-05",
+      "mergedAt": "2026-10-29T16:38:25Z",
+      "mergeCommit": "931e7667403d0bc14f2e8f53ac9410d33607b4ce",
+      "mergeCommitUrl": "https://github.com/marouakourdi61-bot/fondations_API_LMS/commit/931e7667403d0bc14f2e8f53ac9410d33607b4ce",
+      "verdict": "no submitted pre-merge cross-review found",
+      "retrievalErrors": [],
+      "reviews": [],
+      "inlineComments": [],
+      "discussionComments": [],
+      "mergeEvents": [
+        {
+          "id": 34609641385,
+          "actor": "marouakourdi61-bot",
+          "createdAt": "2026-10-29T16:38:25Z",
+          "apiUrl": "https://api.github.com/repos/marouakourdi61-bot/fondations_API_LMS/issues/events/34609641385",
+          "commit": "931e7667403d0bc14f2e8f53ac9410d33607b4ce"
+        }
+      ]
+    },
+    {
+      "number": 61,
+      "title": "docs: FAL-163 B3 [COLLECTION] Livrer la collection Postman ou Insomni…",
+      "url": "https://github.com/marouakourdi61-bot/fondations_API_LMS/pull/61",
+      "author": "Mehdi-133",
+      "mergedAt": "2026-10-30T10:36:10Z",
+      "mergeCommit": "ad39e5a3d9a68523f4a89bdd12362cbc49f61cc0",
+      "mergeCommitUrl": "https://github.com/marouakourdi61-bot/fondations_API_LMS/commit/ad39e5a3d9a68523f4a89bdd12362cbc49f61cc0",
+      "verdict": "no submitted pre-merge cross-review found",
+      "retrievalErrors": [],
+      "reviews": [],
+      "inlineComments": [],
+      "discussionComments": [],
+      "mergeEvents": [
+        {
+          "id": 34680972452,
+          "actor": "marouakourdi61-bot",
+          "createdAt": "2026-10-30T10:36:10Z",
+          "apiUrl": "https://api.github.com/repos/marouakourdi61-bot/fondations_API_LMS/issues/events/34680972452",
+          "commit": "ad39e5a3d9a68523f4a89bdd12362cbc49f61cc0"
+        }
+      ]
+    }
+  ]
+}

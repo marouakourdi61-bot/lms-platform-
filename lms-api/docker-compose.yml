@@ -1,0 +1,27 @@
+services:
+  mongo:
+    image: mongo:7
+    container_name: lms-mongo
+    restart: unless-stopped
+    ports:
+      - "27018:27017"
+    volumes:
+      - mongo_data:/data/db
+
+  api:
+    build: .
+    container_name: lms-api
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      MONGO_URI: mongodb://mongo:27017/lms
+      PORT: 3000
+      JWT_SECRET: ${JWT_SECRET}
+      JWT_EXPIRES_IN: ${JWT_EXPIRES_IN}
+      SEED_DEMO_PASSWORD: ${SEED_DEMO_PASSWORD}
+    depends_on:
+      - mongo
+
+volumes:
+  mongo_data:
