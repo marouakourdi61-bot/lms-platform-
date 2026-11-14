@@ -182,3 +182,16 @@
     border-right-color: var(--border);
   }
 }
+
+
+
+.login-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 24px;
+  box-sizing: border-box;
+  background: #f8fafc;
+  font-family: "Plus Jakarta Sans", Inter, sans-serif;
+}
