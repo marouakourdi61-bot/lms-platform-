@@ -1,9 +1,24 @@
-
+import { useState } from "react";
 import "./LoginForm.css";
 
 function LoginForm() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+
+
   function handleSubmit(event) {
     event.preventDefault();
+
+    if (!email.trim() || !password.trim()) {
+      setError("Veuillez remplir tous les champs.");
+      return;
+
+    }
+
+    setError("");
+
+    console.log("Données du formulaire :", { email, password });
   }
 
   return (
@@ -27,6 +42,11 @@ function LoginForm() {
               type="email"
               placeholder="name@work-email.com"
               autoComplete="email"
+              value={email}
+              onChange={(event) => {
+                setEmail(event.target.value);
+                setError("");
+              }}
               required
             />
 
@@ -42,6 +62,8 @@ function LoginForm() {
           </div>
         </div>
 
+
+
         <div className="form-field">
           <div className="password-label-row">
             <label htmlFor="password">Password</label>
@@ -53,8 +75,13 @@ function LoginForm() {
               id="password"
               name="password"
               type="password"
-              placeholder="•••••••••"
+              placeholder="Enter your password"
               autoComplete="current-password"
+              value={password}
+              onChange={(event) => {
+                setPassword(event.target.value);
+                setError("");
+              }}
               required
             />
 
@@ -74,7 +101,7 @@ function LoginForm() {
             </span>
           </div>
         </div>
-
+        {error && <p className="form-error">{error}</p>}
         <div className="submit-wrapper">
           <button className="signin-button" type="submit">
             <span>Sign in</span>
