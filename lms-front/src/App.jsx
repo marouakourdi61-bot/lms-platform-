@@ -1,4 +1,5 @@
 import { useState } from "react";
+import AdminDashboard from "./pages/AdminDashboard";
 import Dashboard from "./pages/Dashboard";
 import Login from "./pages/Login/Login";
 
@@ -13,8 +14,10 @@ function App() {
 		return <Login onLogin={handleLogin} />;
 	}
 
+	const DashboardPage = session.user.role === "admin" ? AdminDashboard : Dashboard;
+
 	return (
-		<Dashboard
+		<DashboardPage
 			user={session.user}
 			onLogout={() => setSession(null)}
 		/>

@@ -1,0 +1,86 @@
+.admin-overview {
+  display: grid;
+  gap: 24px;
+}
+
+.admin-welcome {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 92px;
+}
+
+.admin-eyebrow {
+  margin: 0 0 8px;
+  color: #4f46e5;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.admin-welcome h1 {
+  margin: 0;
+  color: #0f172a;
+  font-size: 26px;
+  font-weight: 700;
+  line-height: 1.3;
+  overflow-wrap: anywhere;
+}
+
+.admin-welcome h1 span {
+  text-transform: capitalize;
+}
+
+.admin-welcome-copy {
+  margin: 7px 0 0;
+  color: #64748b;
+  font-size: 13px;
+}
+
+.admin-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.admin-overview-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 7fr) minmax(280px, 5fr);
+  align-items: start;
+  gap: 20px;
+}
+
+.admin-overview-grid > :first-child {
+  grid-row: span 2;
+}
+
+@media (max-width: 1000px) {
+  .admin-overview-grid {
+    grid-template-columns: minmax(0, 3fr) minmax(250px, 2fr);
+  }
+}
+
+@media (max-width: 760px) {
+  .admin-stats-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .admin-overview-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-overview-grid > :first-child {
+    grid-row: auto;
+  }
+}
+
+@media (max-width: 560px) {
+  .admin-welcome h1 {
+    font-size: 22px;
+  }
+
+  .admin-welcome-copy {
+    font-size: 12px;
+  }
+}
