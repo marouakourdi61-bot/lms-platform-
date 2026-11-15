@@ -1,0 +1,55 @@
+.brand-lockup {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0 8px 32px;
+}
+
+.brand-mark {
+  width: 32px;
+  height: 32px;
+  flex: 0 0 32px;
+  display: grid;
+  place-items: center;
+  border-radius: 8px;
+  background: linear-gradient(45deg, #22d3ee, #6366f1);
+  box-shadow: 0 8px 18px rgba(34, 211, 238, 0.18);
+}
+
+.brand-mark svg {
+  width: 21px;
+  height: 21px;
+  stroke: #ffffff;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.7;
+}
+
+.brand-name {
+  color: #ffffff;
+  font-size: 20px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+@media (max-width: 900px) {
+  .brand-lockup {
+    margin: 0;
+  }
+}
+
+@media (max-width: 640px) {
+  .brand-lockup {
+    gap: 8px;
+  }
+
+  .brand-mark {
+    width: 30px;
+    height: 30px;
+    flex-basis: 30px;
+  }
+
+  .brand-name {
+    font-size: 16px;
+  }
+}

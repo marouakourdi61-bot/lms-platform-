@@ -2,7 +2,7 @@
 import LoginForm from "./LoginForm";
 import "./Login.css";
 
-function Login() {
+function Login({ onLogin }) {
   return (
     <div className="login-page">
       {/* Left Hero Panel */}
@@ -39,7 +39,7 @@ function Login() {
 
       {/* Right Auth Panel */}
       <main className="auth-panel">
-        <LoginForm />
+        <LoginForm onLogin={onLogin} />
       </main>
 
      

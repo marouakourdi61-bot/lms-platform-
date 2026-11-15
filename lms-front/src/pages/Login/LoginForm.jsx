@@ -1,24 +1,48 @@
 import { useState } from "react";
+import { getCurrentUser, login } from "../../services/api";
 import "./LoginForm.css";
 
-function LoginForm() {
+function LoginForm({ onLogin }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState("");
 
 
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault();
 
     if (!email.trim() || !password.trim()) {
       setError("Veuillez remplir tous les champs.");
       return;
-
     }
 
     setError("");
+    setSuccess("");
+    setLoading(true);
 
-    console.log("Données du formulaire :", { email, password });
+    try {
+      const result = await login(email, password);
+
+      if (!result?.token || !result?.user?.email || !result?.user?.role) {
+        throw new Error("Réponse de connexion invalide.");
+      }
+
+      const user = await getCurrentUser(result.token);
+
+      if (!user?.name || !user?.email || !user?.role) {
+        throw new Error("Profil utilisateur invalide.");
+      }
+
+      setSuccess(`Bienvenue ${user.name} !`);
+      onLogin({ token: result.token, user });
+
+    } catch (error) {
+      setError(error.message);
+    } finally {
+      setLoading(false);
+    }
   }
 
   return (
@@ -46,6 +70,7 @@ function LoginForm() {
               onChange={(event) => {
                 setEmail(event.target.value);
                 setError("");
+                setSuccess("");
               }}
               required
             />
@@ -81,6 +106,7 @@ function LoginForm() {
               onChange={(event) => {
                 setPassword(event.target.value);
                 setError("");
+                setSuccess("");
               }}
               required
             />
@@ -102,9 +128,15 @@ function LoginForm() {
           </div>
         </div>
         {error && <p className="form-error">{error}</p>}
+        {success && <p className="form-success">{success}</p>}
         <div className="submit-wrapper">
-          <button className="signin-button" type="submit">
-            <span>Sign in</span>
+          <button
+            className="signin-button"
+            type="submit"
+            disabled={loading}
+          >
+            <span>{loading ? "Connexion..." : "Sign in"}</span>
+
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
               <path
                 d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"
