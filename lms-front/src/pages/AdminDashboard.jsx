@@ -1,6 +1,8 @@
 import { useState } from "react";
 import AdminOverview from "../components/admin/AdminOverview";
 import AdminSidebar from "../components/admin/AdminSidebar";
+import CourseList from "../components/admin/CourseList";
+import CourseForm from "../components/admin/CourseForm";
 import UserList from "../components/admin/UserList";
 import Header from "../components/dashboard/Header";
 import DashboardLayout from "../layouts/DashboardLayout";
@@ -21,8 +23,12 @@ function AdminDashboard({ user, onLogout }) {
       }
       header={<Header user={user} />}
     >
-      {activePage === "users" ? (
+      {activePage === "create-course" ? (
+        <CourseForm onCancel={() => setActivePage("courses")} />
+      ) : activePage === "users" ? (
         <UserList users={temporaryUserListDemoUsers} />
+      ) : activePage === "courses" ? (
+        <CourseList courses={[]} onCreateCourse={() => setActivePage("create-course")} />
       ) : (
         <AdminOverview user={user} />
       )}

@@ -27,9 +27,14 @@ function AdminSidebar({ activePage, onNavigate, onLogout, userCount }) {
             <span>Users</span>
             <span className="admin-nav-count">{userCount}</span>
           </button>
-          <span className="admin-nav-item">
+          <button
+            className={`admin-nav-item admin-nav-button ${activePage === "courses" || activePage === "create-course" ? "is-active" : ""}`}
+            type="button"
+            aria-current={activePage === "courses" || activePage === "create-course" ? "page" : undefined}
+            onClick={() => onNavigate("courses")}
+          >
             <Icon name="book" />Courses
-          </span>
+          </button>
         </nav>
       </div>
 
