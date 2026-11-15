@@ -107,6 +107,18 @@
   box-shadow: 0 0 0 3px rgba(89, 80, 232, 0.12);
 }
 
+.user-form-field input[aria-invalid="true"],
+.user-form-field select[aria-invalid="true"] {
+  border-color: #dc2626;
+}
+
+.user-form-error {
+  color: #b91c1c;
+  font-size: 10px;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
 .user-form-actions {
   display: flex;
   justify-content: flex-end;
