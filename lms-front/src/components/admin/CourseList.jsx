@@ -1,7 +1,14 @@
 import "./CourseList.css";
 import CourseCard from "./CourseCard";
 
-function CourseList({ courses = [], onCreateCourse }) {
+function CourseList({
+  courses = [],
+  isLoading = false,
+  hasLoaded = false,
+  loadError = "",
+  onRefresh,
+  onCreateCourse,
+}) {
   const courseRows = Array.isArray(courses) ? courses : [];
 
   return (
@@ -31,9 +38,21 @@ function CourseList({ courses = [], onCreateCourse }) {
         </div>
       </section>
 
-      {courseRows.length === 0 ? (
-        <div className="course-empty-state">No courses to display.</div>
+      {loadError ? (
+        <div className="course-empty-state course-load-error" role="alert">
+          {loadError}
+        </div>
+      ) : isLoading ? (
+        <div className="course-empty-state" role="status">Loading courses...</div>
+      ) : !hasLoaded ? (
+        <div className="course-empty-state">Select “Load courses” to view published courses.</div>
+      ) : courseRows.length === 0 ? (
+        <div className="course-empty-state">No published courses found.</div>
       ) : (
+        <>
+          <p className="course-load-success" role="status">
+            Loaded {courseRows.length} published {courseRows.length === 1 ? "course" : "courses"}.
+          </p>
         <section className="course-card-grid" aria-label="Courses">
           {courseRows.map((course) => (
             <CourseCard
@@ -42,11 +61,18 @@ function CourseList({ courses = [], onCreateCourse }) {
             />
           ))}
         </section>
+        </>
       )}
 
       <footer className="course-list-footer">
-        <p>Showing <strong>{courseRows.length}</strong> courses</p>
-        <button type="button" disabled>Load more</button>
+        <p>
+          {hasLoaded && !loadError
+            ? <>Showing <strong>{courseRows.length}</strong> published courses</>
+            : "Published courses"}
+        </p>
+        <button type="button" onClick={onRefresh} disabled={isLoading}>
+          {isLoading ? "Loading..." : hasLoaded ? "Refresh courses" : "Load courses"}
+        </button>
       </footer>
     </section>
   );

@@ -34,4 +34,19 @@ async function getCurrentUser(token) {
   return result.data;
 }
 
-export { API_URL, getCurrentUser, login };
+async function getPublishedCourses() {
+  const response = await fetch(`${API_URL}/api/courses`);
+  const result = await response.json();
+
+  if (!response.ok) {
+    throw new Error(result.message || "Impossible de charger les cours.");
+  }
+
+  if (!Array.isArray(result.data)) {
+    throw new Error("Réponse invalide lors du chargement des cours.");
+  }
+
+  return result.data;
+}
+
+export { API_URL, getCurrentUser, getPublishedCourses, login };
