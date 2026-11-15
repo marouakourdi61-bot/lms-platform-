@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Icon from "../dashboard/Icon";
+import UserForm from "./UserForm";
 import UserCard from "./UserCard";
 import "./UserList.css";
 
@@ -7,6 +8,8 @@ function UserList({ users = [] }) {
   const userRows = Array.isArray(users) ? users : [];
   const [selectedRole, setSelectedRole] = useState("all");
   const [selectedStatus, setSelectedStatus] = useState("all");
+  const [isUserFormOpen, setIsUserFormOpen] = useState(false);
+  const [selectedUser, setSelectedUser] = useState(null);
 
   const availableStatuses = [];
   userRows.forEach((user) => {
@@ -27,6 +30,21 @@ function UserList({ users = [] }) {
     setSelectedStatus("all");
   }
 
+  function openCreateForm() {
+    setSelectedUser(null);
+    setIsUserFormOpen(true);
+  }
+
+  function openEditForm(user) {
+    setSelectedUser(user);
+    setIsUserFormOpen(true);
+  }
+
+  function closeUserForm() {
+    setIsUserFormOpen(false);
+    setSelectedUser(null);
+  }
+
   return (
     <section className="user-management" aria-labelledby="user-list-title">
       <div className="user-management-heading">
@@ -35,7 +53,7 @@ function UserList({ users = [] }) {
           <h1 id="user-list-title">User management</h1>
           <p>Manage access, roles, and learner accounts.</p>
         </div>
-        <button className="add-user-button" type="button">
+        <button className="add-user-button" type="button" onClick={openCreateForm}>
           <svg viewBox="0 0 24 24" aria-hidden="true">
             <path d="M12 4v16m8-8H4" />
           </svg>
@@ -117,7 +135,11 @@ function UserList({ users = [] }) {
                 </tr>
               ) : (
                 filteredUsers.map((user) => (
-                  <UserCard key={user._id || user.id || user.email} user={user} />
+                  <UserCard
+                    key={user._id || user.id || user.email}
+                    user={user}
+                    onEdit={openEditForm}
+                  />
                 ))
               )}
             </tbody>
@@ -136,6 +158,10 @@ function UserList({ users = [] }) {
           </div>
         </footer>
       </div>
+
+      {isUserFormOpen && (
+        <UserForm user={selectedUser} onCancel={closeUserForm} />
+      )}
     </section>
   );
 }

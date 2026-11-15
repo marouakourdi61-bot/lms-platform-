@@ -31,7 +31,7 @@ function formatJoinedDate(date) {
   }).format(parsedDate);
 }
 
-function UserCard({ user }) {
+function UserCard({ user, onEdit }) {
   return (
     <tr className="user-card-row">
       <td className="user-card-user-cell">
@@ -56,7 +56,12 @@ function UserCard({ user }) {
       <td className="user-card-date">{formatJoinedDate(user.createdAt)}</td>
       <td>
         <div className="user-card-actions">
-          <button type="button" aria-label={`Edit ${user.name || "user"}`} title="Edit">
+          <button
+            type="button"
+            aria-label={`Edit ${user.name || "user"}`}
+            title="Edit"
+            onClick={() => onEdit(user)}
+          >
             <svg viewBox="0 0 24 24" aria-hidden="true">
               <path d="m15 5 4 4M4 20l4-.8L19.2 8a2.1 2.1 0 0 0-3-3L5 16.2 4 20Z" />
             </svg>
