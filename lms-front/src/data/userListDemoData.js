@@ -1,4 +1,3 @@
-// Temporary visual fixtures. Remove when LF-18 connects the user-list API.
 export const temporaryUserListDemoUsers = [
   {
     id: "preview-user-1",
