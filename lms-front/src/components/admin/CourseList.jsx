@@ -1,3 +1,4 @@
+import { useState } from "react";
 import "./CourseList.css";
 import CourseCard from "./CourseCard";
 
@@ -6,10 +7,36 @@ function CourseList({
   isLoading = false,
   hasLoaded = false,
   loadError = "",
+  categories = [],
+  onApplyFilters,
   onRefresh,
   onCreateCourse,
 }) {
   const courseRows = Array.isArray(courses) ? courses : [];
+  const [keyword, setKeyword] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("");
+  const [selectedLevel, setSelectedLevel] = useState("");
+  const hasActiveFilters = Boolean(keyword.trim() || selectedCategory || selectedLevel);
+
+  function getCurrentFilters() {
+    return {
+      keyword: keyword.trim(),
+      category: selectedCategory,
+      level: selectedLevel,
+    };
+  }
+
+  function handleApplyFilters(event) {
+    event.preventDefault();
+    onApplyFilters(getCurrentFilters());
+  }
+
+  function handleResetFilters() {
+    setKeyword("");
+    setSelectedCategory("");
+    setSelectedLevel("");
+    onApplyFilters({});
+  }
 
   return (
     <section className="course-management" aria-labelledby="course-list-title">
@@ -27,16 +54,47 @@ function CourseList({
         </button>
       </div>
 
-      <section className="course-controls" aria-label="Course search and filters">
+      <form className="course-controls" onSubmit={handleApplyFilters} aria-label="Course search and filters">
         <label className="course-search">
           <span className="visually-hidden">Search courses</span>
-          <input type="search" placeholder="Search courses..." readOnly />
+          <input
+            type="search"
+            placeholder="Search courses..."
+            value={keyword}
+            onChange={(event) => setKeyword(event.target.value)}
+          />
         </label>
-        <div className="course-filter-labels" aria-hidden="true">
-          <span>All categories</span>
-          <span>All statuses</span>
+        <div className="course-filter-labels">
+          <label>
+            <span className="visually-hidden">Filter by category</span>
+            <select
+              value={selectedCategory}
+              onChange={(event) => setSelectedCategory(event.target.value)}
+            >
+              <option value="">All categories</option>
+              {categories.map((category) => (
+                <option key={category} value={category}>{category}</option>
+              ))}
+            </select>
+          </label>
+          <label>
+            <span className="visually-hidden">Filter by level</span>
+            <select
+              value={selectedLevel}
+              onChange={(event) => setSelectedLevel(event.target.value)}
+            >
+              <option value="">All levels</option>
+              <option value="beginner">Beginner</option>
+              <option value="intermediate">Intermediate</option>
+              <option value="advanced">Advanced</option>
+            </select>
+          </label>
+          <button type="submit" disabled={isLoading}>Apply filters</button>
+          <button type="button" onClick={handleResetFilters} disabled={isLoading}>
+            Reset filters
+          </button>
         </div>
-      </section>
+      </form>
 
       {loadError ? (
         <div className="course-empty-state course-load-error" role="alert">
@@ -47,7 +105,9 @@ function CourseList({
       ) : !hasLoaded ? (
         <div className="course-empty-state">Select “Load courses” to view published courses.</div>
       ) : courseRows.length === 0 ? (
-        <div className="course-empty-state">No published courses found.</div>
+        <div className="course-empty-state">
+          {hasActiveFilters ? "No courses match your filters." : "No published courses found."}
+        </div>
       ) : (
         <>
           <p className="course-load-success" role="status">
@@ -70,7 +130,7 @@ function CourseList({
             ? <>Showing <strong>{courseRows.length}</strong> published courses</>
             : "Published courses"}
         </p>
-        <button type="button" onClick={onRefresh} disabled={isLoading}>
+        <button type="button" onClick={() => onRefresh(getCurrentFilters())} disabled={isLoading}>
           {isLoading ? "Loading..." : hasLoaded ? "Refresh courses" : "Load courses"}
         </button>
       </footer>

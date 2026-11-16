@@ -34,8 +34,25 @@ async function getCurrentUser(token) {
   return result.data;
 }
 
-async function getPublishedCourses() {
-  const response = await fetch(`${API_URL}/api/courses`);
+async function getPublishedCourses(filters = {}) {
+  const query = new URLSearchParams();
+  const keyword = filters.keyword?.trim();
+
+  if (keyword) {
+    query.set("keyword", keyword);
+  }
+  if (filters.category) {
+    query.set("category", filters.category);
+  }
+  if (filters.level) {
+    query.set("level", filters.level);
+  }
+
+  const queryString = query.toString();
+  const url = queryString
+    ? `${API_URL}/api/courses?${queryString}`
+    : `${API_URL}/api/courses`;
+  const response = await fetch(url);
   const result = await response.json();
 
   if (!response.ok) {

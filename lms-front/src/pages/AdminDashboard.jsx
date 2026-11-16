@@ -12,11 +12,12 @@ import { temporaryUserListDemoUsers } from "../data/userListDemoData";
 function AdminDashboard({ user, onLogout }) {
   const [activePage, setActivePage] = useState("dashboard");
   const [courses, setCourses] = useState([]);
+  const [courseCategories, setCourseCategories] = useState([]);
   const [isCoursesLoading, setIsCoursesLoading] = useState(false);
   const [hasLoadedCourses, setHasLoadedCourses] = useState(false);
   const [coursesError, setCoursesError] = useState("");
 
-  async function loadCourses() {
+  async function loadCourses(filters = {}) {
     if (isCoursesLoading) {
       return;
     }
@@ -25,9 +26,19 @@ function AdminDashboard({ user, onLogout }) {
     setCoursesError("");
 
     try {
-      const loadedCourses = await getPublishedCourses();
+      const loadedCourses = await getPublishedCourses(filters);
       setCourses(loadedCourses);
       setHasLoadedCourses(true);
+
+      if (!filters.keyword && !filters.category && !filters.level) {
+        const categories = [];
+        loadedCourses.forEach((course) => {
+          if (course.category && !categories.includes(course.category)) {
+            categories.push(course.category);
+          }
+        });
+        setCourseCategories(categories);
+      }
     } catch (error) {
       setCoursesError(error.message || "Impossible de charger les cours.");
     } finally {
@@ -66,9 +77,11 @@ function AdminDashboard({ user, onLogout }) {
       ) : activePage === "courses" ? (
         <CourseList
           courses={courses}
+          categories={courseCategories}
           isLoading={isCoursesLoading}
           hasLoaded={hasLoadedCourses}
           loadError={coursesError}
+          onApplyFilters={loadCourses}
           onRefresh={loadCourses}
           onCreateCourse={() => setActivePage("create-course")}
         />

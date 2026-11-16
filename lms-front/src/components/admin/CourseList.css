@@ -65,6 +65,7 @@
   align-items: center;
   justify-content: space-between;
   gap: 14px;
+  flex-wrap: wrap;
 }
 
 .course-search {
@@ -90,17 +91,45 @@
 
 .course-filter-labels {
   display: flex;
+  align-items: center;
   gap: 10px;
 }
 
-.course-filter-labels span {
+.course-filter-labels select {
   min-width: 112px;
-  padding: 10px 12px;
+  height: 36px;
+  padding: 0 28px 0 11px;
   border: 1px solid #e2e8f0;
   border-radius: 7px;
   background: #ffffff;
   color: #475569;
+  font: inherit;
   font-size: 10px;
+  cursor: pointer;
+}
+
+.course-filter-labels button {
+  min-height: 36px;
+  padding: 0 10px;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: #4f46e5;
+  font: inherit;
+  font-size: 10px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.course-filter-labels button:disabled {
+  cursor: wait;
+  opacity: 0.6;
+}
+
+.course-filter-labels select:focus-visible,
+.course-filter-labels button:focus-visible {
+  outline: 2px solid #818cf8;
+  outline-offset: 2px;
 }
 
 .course-card-grid {
@@ -195,7 +224,9 @@
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .course-filter-labels span {
+  .course-filter-labels label,
+  .course-filter-labels select {
+    width: 100%;
     min-width: 0;
   }
 
