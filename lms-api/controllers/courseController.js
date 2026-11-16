@@ -1,6 +1,7 @@
 const Course = require("../models/Course");
 const Enrollment = require("../models/Enrollment");
 const Module = require("../models/Module");
+const { roles } = require("../consts/roles");
 
 const getCourses = async (req, res, next) => {
   try {
@@ -117,7 +118,10 @@ const updateCourse = async (req, res, next) => {
       err.statusCode = 404;
       return next(err);
     }
-    if (course.trainer.toString() !== req.user.id) {
+    if (
+      req.user.role !== roles.ADMIN &&
+      course.trainer.toString() !== req.user.id
+    ) {
       const err = new Error("You are not authorized to update this course");
       err.statusCode = 403;
       return next(err);
@@ -213,8 +217,8 @@ const changeCourseStatus = async (req, res, next) => {
           status === "published"
             ? "Course is already published"
             : status === "draft"
-            ? "Course is already a draft"
-            : "course is already archived",
+              ? "Course is already a draft"
+              : "course is already archived",
         data: course,
       });
     }

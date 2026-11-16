@@ -540,7 +540,7 @@ router.get("/:id", getCourseById);
 router.post(
     "/",
     authenticate,
-    authorize(roles.TRAINER),
+    authorize(roles.TRAINER, roles.ADMIN),
     validate(createCourseSchema),
     createCourse,
 );
@@ -634,7 +634,7 @@ router.post(
 router.put(
     "/:id",
     authenticate,
-    authorize(roles.TRAINER),
+    authorize(roles.TRAINER, roles.ADMIN),
     validate(createCourseSchema),
     updateCourse,
 );
