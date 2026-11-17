@@ -151,8 +151,33 @@
 
 .metrics-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 22px;
+}
+
+.dashboard-feedback {
+  grid-column: 1 / -1;
+  margin: 0;
+  padding: 20px;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  background: #ffffff;
+  color: #64748b;
+  font-size: 12px;
+}
+
+.dashboard-feedback--error {
+  color: #b91c1c;
+}
+
+.dashboard-feedback button {
+  margin-left: 8px;
+  border: 0;
+  background: transparent;
+  color: #4338ca;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
 }
 
 .learning-section {
@@ -456,8 +481,12 @@
     width: 240px;
   }
 
-  .metrics-grid,
   .course-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .metrics-grid {
     grid-template-columns: 1fr;
     gap: 12px;
   }

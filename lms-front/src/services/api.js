@@ -66,6 +66,21 @@ async function getPublishedCourses(filters = {}) {
   return result.data;
 }
 
+async function getMyEnrollments(token) {
+  const response = await fetch(`${API_URL}/api/enrollments/me`, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+  const result = await response.json();
+
+  if (!response.ok) {
+    throw new Error(result.message || "Impossible de charger vos inscriptions.");
+  }
+  if (!Array.isArray(result)) {
+    throw new Error("Réponse invalide lors du chargement des inscriptions.");
+  }
+  return result;
+}
+
 
 
 async function createCourse(token, courseData) {
@@ -110,4 +125,4 @@ async function updateCourse(token, courseId, courseData) {
 }
 
 
-export { API_URL, getCurrentUser, getPublishedCourses, login, createCourse, updateCourse };
+export { API_URL, getCurrentUser, getPublishedCourses, getMyEnrollments, login, createCourse, updateCourse };

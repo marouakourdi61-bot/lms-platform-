@@ -49,20 +49,24 @@ function CourseCard({ course, variant = "learning" }) {
   return (
     <article className="course-card">
       <div className="course-image-wrap">
-        <img className="course-image" src={course.image} alt={course.title} />
-        <span className="course-category">{course.category}</span>
+        {course.image && <img className="course-image" src={course.image} alt={course.title || ""} />}
+        {course.category && <span className="course-category">{course.category}</span>}
       </div>
       <div className="course-card-content">
-        <h3>{course.title}</h3>
-        <div className="course-instructor">
-          <span className="instructor-avatar">{course.initials}</span>
-          <span>{course.instructor}</span>
-        </div>
-        <div className="course-meta">
-          <span><Icon name="book" />{course.lessons} lessons</span>
-          <span><Icon name="people" />{course.learners} learners</span>
-        </div>
-        <div className="course-progress">
+        {course.title && <h3>{course.title}</h3>}
+        {course.instructor && (
+          <div className="course-instructor">
+            {course.initials && <span className="instructor-avatar">{course.initials}</span>}
+            <span>{course.instructor}</span>
+          </div>
+        )}
+        {(course.lessons != null || course.learners != null) && (
+          <div className="course-meta">
+            {course.lessons != null && <span><Icon name="book" />{course.lessons} lessons</span>}
+            {course.learners != null && <span><Icon name="people" />{course.learners} learners</span>}
+          </div>
+        )}
+        {typeof course.progress === "number" && <div className="course-progress">
           <div className="course-progress-label">
             <span>Course progress</span>
             <strong>{course.progress}%</strong>
@@ -70,7 +74,7 @@ function CourseCard({ course, variant = "learning" }) {
           <div className="progress-track">
             <span style={{ width: `${course.progress}%` }} />
           </div>
-        </div>
+        </div>}
       </div>
       <div className="course-card-action">
         <span className="course-action-label">
