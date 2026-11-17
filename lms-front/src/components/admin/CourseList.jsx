@@ -11,6 +11,7 @@ function CourseList({
   onApplyFilters,
   onRefresh,
   onCreateCourse,
+  onEditCourse,
 }) {
   const courseRows = Array.isArray(courses) ? courses : [];
   const [keyword, setKeyword] = useState("");
@@ -118,6 +119,7 @@ function CourseList({
             <CourseCard
               key={course._id || course.id}
               course={course}
+              onEdit={onEditCourse}
             />
           ))}
         </section>

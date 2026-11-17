@@ -1,7 +1,8 @@
+
 import Icon from "../dashboard/Icon";
 import "./CourseCard.css";
 
-function CourseCard({ course }) {
+function CourseCard({ course, onEdit }) {
   return (
     <article className="admin-course-card">
       <div className="admin-course-card-top">
@@ -34,6 +35,17 @@ function CourseCard({ course }) {
           {course.status || "—"}
         </span>
       </div>
+
+      <footer className="admin-course-card-actions">
+        <button
+          type="button"
+          onClick={() => onEdit(course)}
+          aria-label={`Edit ${course.title}`}
+        >
+          <Icon name="edit" />
+          Edit
+        </button>
+      </footer>
     </article>
   );
 }

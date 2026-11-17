@@ -19,6 +19,7 @@ function App() {
 	return (
 		<DashboardPage
 			user={session.user}
+			token={session.token}
 			onLogout={() => setSession(null)}
 		/>
 	);

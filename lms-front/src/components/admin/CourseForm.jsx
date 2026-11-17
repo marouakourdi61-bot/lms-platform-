@@ -1,9 +1,31 @@
+
 import Icon from "../dashboard/Icon";
 import "./CourseForm.css";
 
-function CourseForm({ onCancel }) {
-  function handleSubmit(event) {
+function CourseForm({
+  onCancel,
+  onSubmit,
+  initialCourse = null,
+  isSaving = false,
+  submitError = "",
+}) {
+  const isEditing = Boolean(initialCourse);
+
+  async function handleSubmit(event) {
     event.preventDefault();
+
+    const formData = new FormData(event.currentTarget);
+
+    const courseData = {
+      title: formData.get("title").trim(),
+      description: formData.get("description").trim(),
+      category: formData.get("category").trim(),
+      level: formData.get("level"),
+      estimatedDuration: Number(formData.get("estimatedDuration")),
+      objectives: initialCourse?.objectives || [],
+    };
+
+    await onSubmit(courseData);
   }
 
   return (
@@ -15,8 +37,14 @@ function CourseForm({ onCancel }) {
 
       <header className="course-builder-heading">
         <p>Course Builder</p>
-        <h1 id="course-form-title">Create a new course</h1>
-        <span>Add the core details for your LMS Platform course.</span>
+        <h1 id="course-form-title">
+          {isEditing ? "Edit course" : "Create a new course"}
+        </h1>
+        <span>
+          {isEditing
+            ? "Update your course information."
+            : "Add the core details for your LMS Platform course."}
+        </span>
       </header>
 
       <form className="course-form" onSubmit={handleSubmit}>
@@ -35,6 +63,8 @@ function CourseForm({ onCancel }) {
             name="title"
             type="text"
             placeholder="Enter a course title"
+            defaultValue={initialCourse?.title || ""}
+            required
           />
         </label>
 
@@ -45,6 +75,8 @@ function CourseForm({ onCancel }) {
             name="description"
             placeholder="Describe the course topics and outcomes..."
             rows="4"
+            defaultValue={initialCourse?.description || ""}
+            required
           />
         </label>
 
@@ -56,12 +88,19 @@ function CourseForm({ onCancel }) {
               name="category"
               type="text"
               placeholder="Enter a category"
+              defaultValue={initialCourse?.category || ""}
+              required
             />
           </label>
 
           <label className="course-form-field" htmlFor="course-level">
             <span>Level</span>
-            <select id="course-level" name="level" defaultValue="beginner">
+            <select
+              id="course-level"
+              name="level"
+              defaultValue={initialCourse?.level || "beginner"}
+              required
+            >
               <option value="beginner">Beginner</option>
               <option value="intermediate">Intermediate</option>
               <option value="advanced">Advanced</option>
@@ -77,15 +116,38 @@ function CourseForm({ onCancel }) {
             type="number"
             min="1"
             placeholder="Enter a duration"
+            defaultValue={initialCourse?.estimatedDuration ?? ""}
+            required
           />
         </label>
 
+        {submitError && (
+          <p className="course-form-error" role="alert">
+            {submitError}
+          </p>
+        )}
+
         <footer className="course-form-actions">
-          <button className="course-form-cancel" type="button" onClick={onCancel}>
+          <button
+            className="course-form-cancel"
+            type="button"
+            onClick={onCancel}
+            disabled={isSaving}
+          >
             Cancel
           </button>
-          <button className="course-form-save" type="submit">
-            Save course <Icon name="arrow" />
+
+          <button
+            className="course-form-save"
+            type="submit"
+            disabled={isSaving}
+          >
+            {isSaving
+              ? "Saving..."
+              : isEditing
+                ? "Update course"
+                : "Save course"}
+            {!isSaving && <Icon name="arrow" />}
           </button>
         </footer>
       </form>

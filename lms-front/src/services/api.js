@@ -66,4 +66,48 @@ async function getPublishedCourses(filters = {}) {
   return result.data;
 }
 
-export { API_URL, getCurrentUser, getPublishedCourses, login };
+
+
+async function createCourse(token, courseData) {
+  const response = await fetch(`${API_URL}/api/courses`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify(courseData),
+  });
+
+  const result = await response.json();
+
+  if (!response.ok) {
+    throw new Error(result.message || "Impossible de créer le cours.");
+  }
+
+  return result.data;
+}
+
+async function updateCourse(token, courseId, courseData) {
+  const response = await fetch(
+    `${API_URL}/api/courses/${encodeURIComponent(courseId)}`,
+    {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(courseData),
+    }
+  );
+
+  const result = await response.json();
+
+  if (!response.ok) {
+    throw new Error(result.message || "Impossible de modifier le cours.");
+  }
+
+  return result.data;
+}
+
+
+export { API_URL, getCurrentUser, getPublishedCourses, login, createCourse, updateCourse };
