@@ -1,0 +1,157 @@
+.user-card-row {
+  border-bottom: 1px solid #f1f5f9;
+  background: #ffffff;
+  transition: background-color 0.15s ease;
+}
+
+.user-card-row:hover {
+  background: #f8fafc;
+}
+
+.user-card-row:last-child {
+  border-bottom: 0;
+}
+
+.user-card-row td {
+  padding: 13px 16px;
+  color: #475569;
+  font-size: 11px;
+  vertical-align: middle;
+}
+
+.user-card-user-cell {
+  min-width: 230px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.user-card-avatar {
+  width: 34px;
+  height: 34px;
+  flex: 0 0 34px;
+  display: grid;
+  place-items: center;
+  border-radius: 8px;
+  background: #eef2ff;
+  color: #4f46e5;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.user-card-identity {
+  min-width: 0;
+  display: grid;
+  gap: 4px;
+}
+
+.user-card-identity strong,
+.user-card-identity span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.user-card-identity strong {
+  color: #1e293b;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.user-card-identity span {
+  color: #64748b;
+  font-size: 10px;
+}
+
+.user-card-role {
+  display: inline-block;
+  padding: 4px 9px;
+  border: 1px solid #e2e8f0;
+  border-radius: 5px;
+  background: #f8fafc;
+  color: #475569;
+  font-size: 10px;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+.user-card-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 8px;
+  border-radius: 999px;
+  background: #f1f5f9;
+  color: #475569;
+  font-size: 10px;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+.user-card-status i {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.user-card-status[data-status="active"] {
+  border: 1px solid #dcfce7;
+  background: #ecfdf5;
+  color: #047857;
+}
+
+.user-card-status[data-status="suspended"] {
+  border: 1px solid #fde68a;
+  background: #fffbeb;
+  color: #b45309;
+}
+
+.user-card-date {
+  color: #64748b !important;
+  white-space: nowrap;
+}
+
+.user-card-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.user-card-actions button {
+  width: 26px;
+  height: 26px;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border: 0;
+  border-radius: 5px;
+  background: transparent;
+  color: #94a3b8;
+}
+
+.user-card-actions button svg {
+  width: 15px;
+  height: 15px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.7;
+}
+
+.user-card-actions button:last-child svg {
+  fill: currentColor;
+  stroke: none;
+}
+
+@media (max-width: 760px) {
+  .user-card-row td {
+    padding: 12px;
+  }
+
+  .user-card-user-cell {
+    min-width: 210px;
+  }
+}

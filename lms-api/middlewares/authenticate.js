@@ -21,6 +21,10 @@ const authenticate = (req, res, next) => {
     }
 
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    console.log("AUTHENTICATE CHECK:", {
+  role: decoded.role,
+  subject: decoded.sub,
+});
     req.user = {
       id: decoded.sub,
       role: decoded.role,
