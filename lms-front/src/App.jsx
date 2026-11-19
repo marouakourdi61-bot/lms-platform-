@@ -2,8 +2,12 @@ import { useState } from "react";
 import AdminDashboard from "./pages/AdminDashboard";
 import Dashboard from "./pages/Dashboard";
 import Login from "./pages/Login/Login";
+import Courses from "./pages/Learner/Courses";
 
 function App() {
+
+	// return <Courses />;
+
 	const [session, setSession] = useState(null);
 
 	function handleLogin(result) {
@@ -23,6 +27,8 @@ function App() {
 			onLogout={() => setSession(null)}
 		/>
 	);
+
+	
 }
 
 export default App;
