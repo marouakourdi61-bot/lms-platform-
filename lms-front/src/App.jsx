@@ -1,28 +1,38 @@
-import { useState } from "react";
+
 import AdminDashboard from "./pages/AdminDashboard";
 import Dashboard from "./pages/Dashboard";
 import Login from "./pages/Login/Login";
+import { AuthProvider, useAuth } from "./context/AuthContext";
+
+function AppContent() {
+    const { user, token, loading, handleLogin, logout } = useAuth();
+
+    if (loading) {
+        return <p>Loading...</p>;
+    }
+
+    if (!user) {
+        return <Login onLogin={handleLogin} />;
+    }
+
+    const DashboardPage =
+        user.role === "admin" ? AdminDashboard : Dashboard;
+
+    return (
+        <DashboardPage
+            user={user}
+            token={token}
+            onLogout={logout}
+        />
+    );
+}
 
 function App() {
-	const [session, setSession] = useState(null);
-
-	function handleLogin(result) {
-		setSession({ token: result.token, user: result.user });
-	}
-
-	if (!session) {
-		return <Login onLogin={handleLogin} />;
-	}
-
-	const DashboardPage = session.user.role === "admin" ? AdminDashboard : Dashboard;
-
-	return (
-		<DashboardPage
-			user={session.user}
-			token={session.token}
-			onLogout={() => setSession(null)}
-		/>
-	);
+    return (
+        <AuthProvider>
+            <AppContent />
+        </AuthProvider>
+    );
 }
 
 export default App;

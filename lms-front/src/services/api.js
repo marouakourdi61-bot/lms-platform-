@@ -1,128 +1,106 @@
+import axios from "axios";
 const API_URL = import.meta.env.VITE_API_URL || "";
 
+const client = axios.create({
+  baseURL: API_URL
+})
+
+
+// Login
 async function login(email, password) {
-  const response = await fetch(`${API_URL}/api/auth/login`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ email, password }),
+  const response = await client.post("/api/auth/login", {
+    email,
+    password,
   });
 
-  const result = await response.json();
-
-  if (!response.ok) {
-    throw new Error(result.message || "Erreur lors de la connexion.");
-  }
-
-  return result.data;
+  return response.data.data;
 }
 
+// Récupérer l'utilisateur connecté
 async function getCurrentUser(token) {
-  const response = await fetch(`${API_URL}/api/auth/me`, {
+  const response = await client.get("/api/auth/me", {
     headers: {
       Authorization: `Bearer ${token}`,
     },
   });
 
-  const result = await response.json();
-
-  if (!response.ok) {
-    throw new Error(result.message || "Impossible de récupérer le profil.");
-  }
-
-  return result.data;
+  return response.data.data;
 }
 
+// Récupérer les cours publiés
 async function getPublishedCourses(filters = {}) {
   const query = new URLSearchParams();
+
   const keyword = filters.keyword?.trim();
 
-  if (keyword) {
-    query.set("keyword", keyword);
-  }
-  if (filters.category) {
-    query.set("category", filters.category);
-  }
-  if (filters.level) {
-    query.set("level", filters.level);
-  }
+  if (keyword) query.set("keyword", keyword);
+  if (filters.category) query.set("category", filters.category);
+  if (filters.level) query.set("level", filters.level);
+  if (filters.sortBy) query.set("sortBy", filters.sortBy);
 
-  const queryString = query.toString();
-  const url = queryString
-    ? `${API_URL}/api/courses?${queryString}`
-    : `${API_URL}/api/courses`;
-  const response = await fetch(url);
-  const result = await response.json();
+  const response = await client.get("/api/courses", {
+    params: query,
+  });
 
-  if (!response.ok) {
-    throw new Error(result.message || "Impossible de charger les cours.");
-  }
+  const courses = response.data.data;
 
-  if (!Array.isArray(result.data)) {
+  if (!Array.isArray(courses)) {
     throw new Error("Réponse invalide lors du chargement des cours.");
   }
 
-  return result.data;
+  return courses;
 }
 
+// Récupérer les inscriptions de l'utilisateur
 async function getMyEnrollments(token) {
-  const response = await fetch(`${API_URL}/api/enrollments/me`, {
-    headers: { Authorization: `Bearer ${token}` },
-  });
-  const result = await response.json();
-
-  if (!response.ok) {
-    throw new Error(result.message || "Impossible de charger vos inscriptions.");
-  }
-  if (!Array.isArray(result)) {
-    throw new Error("Réponse invalide lors du chargement des inscriptions.");
-  }
-  return result;
-}
-
-
-
-async function createCourse(token, courseData) {
-  const response = await fetch(`${API_URL}/api/courses`, {
-    method: "POST",
+  const response = await client.get("/api/enrollments/me", {
     headers: {
-      "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
     },
-    body: JSON.stringify(courseData),
   });
 
-  const result = await response.json();
+  const enrollments = response.data.data ?? response.data;
 
-  if (!response.ok) {
-    throw new Error(result.message || "Impossible de créer le cours.");
+  if (!Array.isArray(enrollments)) {
+    throw new Error("Réponse invalide lors du chargement des inscriptions.");
   }
 
-  return result.data;
+  return enrollments;
 }
 
+// Créer un cours
+async function createCourse(token, courseData) {
+  const response = await client.post("/api/courses", courseData, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  return response.data.data;
+}
+
+// Modifier un cours
 async function updateCourse(token, courseId, courseData) {
-  const response = await fetch(
-    `${API_URL}/api/courses/${encodeURIComponent(courseId)}`,
+  const response = await client.put(
+    `/api/courses/${encodeURIComponent(courseId)}`,
+    courseData,
     {
-      method: "PUT",
       headers: {
-        "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       },
-      body: JSON.stringify(courseData),
     }
   );
 
-  const result = await response.json();
-
-  if (!response.ok) {
-    throw new Error(result.message || "Impossible de modifier le cours.");
-  }
-
-  return result.data;
+  return response.data.data;
 }
 
+export {
+  login,
+  getCurrentUser,
+  getPublishedCourses,
+  getMyEnrollments,
+  createCourse,
+  updateCourse,
+};
 
-export { API_URL, getCurrentUser, getPublishedCourses, getMyEnrollments, login, createCourse, updateCourse };
+export default client;
