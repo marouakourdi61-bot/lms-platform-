@@ -63,6 +63,19 @@
   flex: 0 0 20px;
 }
 
+
+.sidebar-nav-item {
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.sidebar-nav-item:hover {
+  background: #16223d;
+  color: #ffffff;
+}
+
+
 .sidebar-bottom {
   padding-top: 16px;
 }

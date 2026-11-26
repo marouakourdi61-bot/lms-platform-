@@ -1,33 +1,19 @@
-import { useState } from "react";
-import DashboardContent from "../components/dashboard/DashboardContent";
+
+import { Outlet } from "react-router-dom";
+
 import Header from "../components/dashboard/Header";
 import Sidebar from "../components/dashboard/Sidebar";
 import DashboardLayout from "../layouts/DashboardLayout";
-import Courses from "./Learner/Courses";
-import MyCourses from "./Learner/MyCourses";
 
-
-function Dashboard({ user, token, onLogout }) {
-  const [activePage, setActivePage] = useState("dashboard");
+function Dashboard({ user, onLogout }) {
   return (
     <DashboardLayout
       sidebar={
-        <Sidebar
-          onLogout={onLogout}
-          activePage={activePage}
-          onNavigate={setActivePage}
-        />
+        <Sidebar onLogout={onLogout} />
       }
       header={<Header user={user} />}
     >
-      {activePage === "dashboard" && (
-        <DashboardContent user={user} token={token} />
-      )}
-
-      {activePage === "courses" && <Courses token={token} />}
-      {activePage === "my-courses" && (
-        <MyCourses token={token} />
-      )}
+      <Outlet />
     </DashboardLayout>
   );
 }
