@@ -1,0 +1,106 @@
+
+.learner-course-card {
+  background: #ffffff;
+  border: 1px solid #e8e8ef;
+  border-radius: 14px;
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.learner-course-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+.learner-course-card-top {
+  min-height: 140px;
+  padding: 24px;
+  background: linear-gradient(135deg, #f4f1ff, #eff6ff);
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.learner-course-card-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 12px;
+  background: #ffffff;
+  color: #6554c0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+}
+
+.learner-course-card-category {
+  background: #ffffff;
+  color: #6554c0;
+  padding: 7px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.learner-course-card-content {
+  padding: 22px;
+}
+
+.learner-course-card-content h3 {
+  margin: 0 0 10px;
+  color: #24243a;
+  font-size: 18px;
+}
+
+.learner-course-card-description {
+  color: #77778a;
+  font-size: 14px;
+  line-height: 1.6;
+  margin: 0 0 20px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.learner-course-card-details {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  padding: 16px 0;
+  border-top: 1px solid #eeeeF2;
+  border-bottom: 1px solid #eeeeF2;
+}
+
+.learner-course-card-details div {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.learner-course-card-details span {
+  color: #888899;
+  font-size: 12px;
+}
+
+.learner-course-card-details strong {
+  color: #33334a;
+  font-size: 14px;
+  text-transform: capitalize;
+}
+
+.learner-course-card-footer {
+  padding-top: 16px;
+}
+
+.learner-course-card-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  color: #16834a;
+  background: #eaf8ef;
+  padding: 7px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+}

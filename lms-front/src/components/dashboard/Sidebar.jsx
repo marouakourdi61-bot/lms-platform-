@@ -1,26 +1,58 @@
+
 import Icon from "./Icon";
 import Logo from "./Logo";
 import "./Sidebar.css";
 
-function Sidebar({ onLogout }) {
+function Sidebar({ onLogout, activePage, onNavigate }) {
   return (
     <aside className="dashboard-sidebar">
       <div className="sidebar-top">
         <Logo />
         <p className="sidebar-label">Learning Space</p>
+
         <nav className="sidebar-nav" aria-label="Main navigation">
-          <span className="sidebar-nav-item is-active" aria-current="page">
+          <button
+            className={`sidebar-nav-item ${activePage === "dashboard" ? "is-active" : ""}`}
+            aria-current={activePage === "dashboard" ? "page" : undefined}
+            onClick={() => onNavigate("dashboard")}
+            type="button"
+          >
             <Icon name="dashboard" />Dashboard
-          </span>
-          <span className="sidebar-nav-item">
-            <Icon name="book" />My Courses
-          </span>
+          </button>
+
+          <button
+            className={`sidebar-nav-item ${activePage === "courses" ? "is-active" : ""}`}
+            aria-current={activePage === "courses" ? "page" : undefined}
+            onClick={() => onNavigate("courses")}
+            type="button"
+          >
+            <Icon name="book" />
+            Explore Courses
+          </button>
+
+          <button
+            className={`sidebar-nav-item ${activePage === "my-courses" ? "is-active" : ""}`}
+            aria-current={activePage === "my-courses" ? "page" : undefined}
+            onClick={() => onNavigate("my-courses")}
+            type="button"
+          >
+            <Icon name="book" />
+            My Courses
+          </button>
         </nav>
       </div>
+
       <div className="sidebar-bottom">
         <div className="sidebar-account">
-          <span className="sidebar-account-link"><Icon name="user" />Profile</span>
-          <button className="sidebar-account-link sidebar-logout" type="button" onClick={onLogout}>
+          <span className="sidebar-account-link">
+            <Icon name="user" />Profile
+          </span>
+
+          <button
+            className="sidebar-account-link sidebar-logout"
+            type="button"
+            onClick={onLogout}
+          >
             <Icon name="logout" />Log out
           </button>
         </div>

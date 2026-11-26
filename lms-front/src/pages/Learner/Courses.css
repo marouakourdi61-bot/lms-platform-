@@ -1,0 +1,71 @@
+.courses-page {
+  width: 100%;
+}
+
+.courses-header {
+  margin-bottom: 32px;
+}
+
+.courses-header h1 {
+  margin: 0 0 12px;
+  font-size: 32px;
+}
+
+.courses-header p {
+  color: #6b7280;
+  margin: 0;
+}
+
+.courses-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 24px;
+}
+
+.catalog-course-card {
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.catalog-course-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+.catalog-course-content {
+  padding: 24px;
+}
+
+.catalog-course-category {
+  display: inline-block;
+  margin-bottom: 16px;
+  padding: 6px 12px;
+  border-radius: 20px;
+  background: #f0edff;
+  color: #6c4ce3;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.catalog-course-card h2 {
+  margin: 0 0 12px;
+  font-size: 20px;
+}
+
+.catalog-course-card p {
+  color: #6b7280;
+  line-height: 1.6;
+}
+
+.catalog-course-info {
+  margin-top: 20px;
+  font-size: 14px;
+  color: #4b5563;
+}
+
+.courses-error {
+  color: #dc2626;
+}

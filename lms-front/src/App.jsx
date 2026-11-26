@@ -1,38 +1,37 @@
-
 import AdminDashboard from "./pages/AdminDashboard";
 import Dashboard from "./pages/Dashboard";
 import Login from "./pages/Login/Login";
 import { AuthProvider, useAuth } from "./context/AuthContext";
 
 function AppContent() {
-    const { user, token, loading, handleLogin, logout } = useAuth();
+  const { user, token, loading, handleLogin, logout } = useAuth();
 
-    if (loading) {
-        return <p>Loading...</p>;
-    }
+  if (loading) {
+    return <p>Loading...</p>;
+  }
 
-    if (!user) {
-        return <Login onLogin={handleLogin} />;
-    }
+  if (!user) {
+    return <Login onLogin={handleLogin} />;
+  }
 
-    const DashboardPage =
-        user.role === "admin" ? AdminDashboard : Dashboard;
+  const DashboardPage =
+    user.role === "admin" ? AdminDashboard : Dashboard;
 
-    return (
-        <DashboardPage
-            user={user}
-            token={token}
-            onLogout={logout}
-        />
-    );
+  return (
+    <DashboardPage
+      user={user}
+      token={token}
+      onLogout={logout}
+    />
+  );
 }
 
 function App() {
-    return (
-        <AuthProvider>
-            <AppContent />
-        </AuthProvider>
-    );
+  return (
+    <AuthProvider>
+      <AppContent />
+    </AuthProvider>
+  );
 }
 
 export default App;
