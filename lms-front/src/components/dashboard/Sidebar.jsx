@@ -1,9 +1,9 @@
-
+import { NavLink } from "react-router-dom";
 import Icon from "./Icon";
 import Logo from "./Logo";
 import "./Sidebar.css";
 
-function Sidebar({ onLogout, activePage, onNavigate }) {
+function Sidebar({ onLogout }) {
   return (
     <aside className="dashboard-sidebar">
       <div className="sidebar-top">
@@ -11,41 +11,43 @@ function Sidebar({ onLogout, activePage, onNavigate }) {
         <p className="sidebar-label">Learning Space</p>
 
         <nav className="sidebar-nav" aria-label="Main navigation">
-          <button
-            className={`sidebar-nav-item ${activePage === "dashboard" ? "is-active" : ""}`}
-            aria-current={activePage === "dashboard" ? "page" : undefined}
-            onClick={() => onNavigate("dashboard")}
-            type="button"
+          <NavLink
+            to="/learner/dashboard"
+            className={({ isActive }) =>
+              `sidebar-nav-item ${isActive ? "is-active" : ""}`
+            }
           >
-            <Icon name="dashboard" />Dashboard
-          </button>
+            <Icon name="dashboard" />
+            Dashboard
+          </NavLink>
 
-          <button
-            className={`sidebar-nav-item ${activePage === "courses" ? "is-active" : ""}`}
-            aria-current={activePage === "courses" ? "page" : undefined}
-            onClick={() => onNavigate("courses")}
-            type="button"
+          <NavLink
+            to="/learner/courses"
+            className={({ isActive }) =>
+              `sidebar-nav-item ${isActive ? "is-active" : ""}`
+            }
           >
             <Icon name="book" />
             Explore Courses
-          </button>
+          </NavLink>
 
-          <button
-            className={`sidebar-nav-item ${activePage === "my-courses" ? "is-active" : ""}`}
-            aria-current={activePage === "my-courses" ? "page" : undefined}
-            onClick={() => onNavigate("my-courses")}
-            type="button"
+          <NavLink
+            to="/learner/my-courses"
+            className={({ isActive }) =>
+              `sidebar-nav-item ${isActive ? "is-active" : ""}`
+            }
           >
             <Icon name="book" />
             My Courses
-          </button>
+          </NavLink>
         </nav>
       </div>
 
       <div className="sidebar-bottom">
         <div className="sidebar-account">
           <span className="sidebar-account-link">
-            <Icon name="user" />Profile
+            <Icon name="user" />
+            Profile
           </span>
 
           <button
@@ -53,7 +55,8 @@ function Sidebar({ onLogout, activePage, onNavigate }) {
             type="button"
             onClick={onLogout}
           >
-            <Icon name="logout" />Log out
+            <Icon name="logout" />
+            Log out
           </button>
         </div>
       </div>
