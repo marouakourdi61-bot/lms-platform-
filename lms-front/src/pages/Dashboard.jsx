@@ -4,11 +4,12 @@ import Header from "../components/dashboard/Header";
 import Sidebar from "../components/dashboard/Sidebar";
 import DashboardLayout from "../layouts/DashboardLayout";
 import Courses from "./Learner/Courses";
+import MyCourses from "./Learner/MyCourses";
 
 
 function Dashboard({ user, token, onLogout }) {
-   const [activePage, setActivePage] = useState("dashboard");
-   return (
+  const [activePage, setActivePage] = useState("dashboard");
+  return (
     <DashboardLayout
       sidebar={
         <Sidebar
@@ -23,7 +24,10 @@ function Dashboard({ user, token, onLogout }) {
         <DashboardContent user={user} token={token} />
       )}
 
-      {activePage === "courses" && <Courses />}
+      {activePage === "courses" && <Courses token={token} />}
+      {activePage === "my-courses" && (
+        <MyCourses token={token} />
+      )}
     </DashboardLayout>
   );
 }

@@ -26,7 +26,18 @@ function Sidebar({ onLogout, activePage, onNavigate }) {
             onClick={() => onNavigate("courses")}
             type="button"
           >
-            <Icon name="book" />My Courses
+            <Icon name="book" />
+            Explore Courses
+          </button>
+
+          <button
+            className={`sidebar-nav-item ${activePage === "my-courses" ? "is-active" : ""}`}
+            aria-current={activePage === "my-courses" ? "page" : undefined}
+            onClick={() => onNavigate("my-courses")}
+            type="button"
+          >
+            <Icon name="book" />
+            My Courses
           </button>
         </nav>
       </div>

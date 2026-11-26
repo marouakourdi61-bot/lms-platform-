@@ -68,6 +68,24 @@ async function getMyEnrollments(token) {
   return enrollments;
 }
 
+//s'inscrire a un coure
+
+async function enrollInCourse(token, courseId) {
+  const response = await client.post(
+    `/api/courses/${encodeURIComponent(courseId)}/enroll`,
+    {},
+
+    {
+      headers: {
+        Authorization: `Bearer ${token}`
+      },
+    }
+
+  );
+
+  return response.data.data;
+}
+
 // Créer un cours
 async function createCourse(token, courseData) {
   const response = await client.post("/api/courses", courseData, {
@@ -99,6 +117,7 @@ export {
   getCurrentUser,
   getPublishedCourses,
   getMyEnrollments,
+  enrollInCourse,
   createCourse,
   updateCourse,
 };

@@ -1,0 +1,28 @@
+
+.my-courses-page {
+  width: 100%;
+}
+
+.my-courses-header {
+  margin-bottom: 32px;
+}
+
+.my-courses-header h1 {
+  margin: 0 0 12px;
+  font-size: 32px;
+}
+
+.my-courses-header p {
+  margin: 0;
+  color: #6b7280;
+}
+
+.my-courses-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 24px;
+}
+
+.my-courses-error {
+  color: #dc2626;
+}
